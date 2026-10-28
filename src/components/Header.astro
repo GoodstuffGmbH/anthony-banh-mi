@@ -48,8 +48,9 @@ const singles = [
 
 <header class="site-header">
   <div class="container bar">
-    <a class="home" href={href('home', lang)} aria-label={t.a11y.home}>
+    <a class="home" href={href('home', lang)}>
       <Logo eager />
+      <span class="visually-hidden">{t.a11y.homeSuffix}</span>
     </a>
 
     <button class="toggle" type="button" popovertarget="site-nav" aria-label={t.a11y.menu}>
@@ -253,7 +254,7 @@ const singles = [
     }
 
     .nav::backdrop {
-      background: rgb(11 32 22 / 0.5);
+      background: var(--color-backdrop);
     }
 
     .close {

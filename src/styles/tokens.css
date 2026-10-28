@@ -31,6 +31,7 @@
   --color-focus: var(--gold-700);
   --color-focus-on-inverse: var(--gold-400);
   --color-wood: var(--wood-800);
+  --color-backdrop: rgb(11 32 22 / 0.5);
 
   /* Typography */
   --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;

@@ -50,7 +50,7 @@ const de = {
     mainNav: 'Hauptnavigation',
     footerNav: 'Rechtliches',
     langSwitch: 'Sprache wählen',
-    home: 'Anthony Bánh Mì – zur Startseite',
+    homeSuffix: '(zur Startseite)',
     breadcrumb: 'Brotkrumen',
   },
   nav: {
@@ -201,7 +201,7 @@ const en: Dict = {
     mainNav: 'Main navigation',
     footerNav: 'Legal',
     langSwitch: 'Choose language',
-    home: 'Anthony Bánh Mì – home',
+    homeSuffix: '(home)',
     breadcrumb: 'Breadcrumb',
   },
   nav: {

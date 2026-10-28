@@ -167,12 +167,15 @@ const valueIcons: IconName[] = ['leaf', 'heart', 'star', 'globe'];
     display: grid;
     justify-items: start;
     gap: var(--space-md);
+    container-type: inline-size;
   }
 
+  /* Slogan nie trennen: Größe folgt der Spaltenbreite („Vietnamesisch.“ ist das längste Wort). */
   .display {
     display: grid;
-    font-size: var(--fs-display);
+    font-size: clamp(2rem, 10cqi, 4rem);
     line-height: 1.05;
+    hyphens: manual;
   }
 
   .hero-image,
