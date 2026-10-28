@@ -14,7 +14,7 @@ const { lang } = Astro.props;
 const t = useT(lang);
 ---
 
-<TextPage {lang} routeKey="franchise" title={t.franchise.title} lead={t.franchise.lead} description={t.franchise.lead}>
+<TextPage {lang} routeKey="franchise" title={t.franchise.title} lead={t.franchise.lead} seoTitle={t.seo.franchise.title} description={t.seo.franchise.description}>
   <h2>{t.franchise.concept}</h2>
   <Placeholder block text="Franchise-Konzept: Standortprofil, Leistungen der Zentrale, Investitionsrahmen" />
 

@@ -1,10 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { routes } from './src/i18n/routes.ts';
+
+const SITE = 'https://www.anthonybanhmi.com';
 
 // Hauptdomain noch offen (RÜCKFRAGE, siehe docs/specs). Bis dahin .com.
 export default defineConfig({
-  site: 'https://www.anthonybanhmi.com',
+  site: SITE,
   trailingSlash: 'always',
   i18n: {
     defaultLocale: 'de',
@@ -13,8 +16,21 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en' } },
       filter: (page) => !page.endsWith('/404/'),
+      // DE und EN haben unterschiedliche Pfade, daher hreflang aus der Routentabelle.
+      serialize(item) {
+        const path = new URL(item.url).pathname;
+        const route = Object.values(routes).find((r) => r.de === path || r.en === path);
+        if (route) {
+          item.links = [
+            { lang: 'de', url: SITE + route.de },
+            { lang: 'en', url: SITE + route.en },
+            { lang: 'x-default', url: SITE + route.de },
+          ];
+        }
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
     }),
   ],
   build: {

@@ -14,7 +14,7 @@ const { lang } = Astro.props;
 const t = useT(lang);
 ---
 
-<TextPage {lang} routeKey="about" title={t.about.title} lead={t.about.lead} description={t.about.lead}>
+<TextPage {lang} routeKey="about" title={t.about.title} lead={t.about.lead} seoTitle={t.seo.about.title} description={t.seo.about.description}>
   <Image src={image('logo-portrait')} alt={t.about.portraitAlt} width={200} height={200} densities={[1, 2]} class="portrait" />
 
   <h2 id="geschichte">{t.about.story}</h2>

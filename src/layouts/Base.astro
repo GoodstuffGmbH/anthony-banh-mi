@@ -2,6 +2,8 @@
 import '@fontsource-variable/cormorant-garamond';
 import '@fontsource-variable/jost';
 import '../styles/global.css';
+import jostLatin from '@fontsource-variable/jost/files/jost-latin-wght-normal.woff2?url';
+import cormorantLatin from '@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-normal.woff2?url';
 import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -28,6 +30,8 @@ const t = useT(lang);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fbf6ee" />
+    <link rel="preload" href={jostLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={cormorantLatin} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Seo {title} {description} {lang} {routeKey} {ogImage} />

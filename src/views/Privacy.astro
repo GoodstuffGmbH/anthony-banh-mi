@@ -12,7 +12,7 @@ const { lang } = Astro.props;
 const t = useT(lang);
 ---
 
-<TextPage {lang} routeKey="privacy" title={t.legal.privacyTitle} description={t.legal.privacyTitle}>
+<TextPage {lang} routeKey="privacy" title={t.legal.privacyTitle} seoTitle={t.seo.privacy.title} description={t.seo.privacy.description}>
   <Placeholder block text="Datenschutzerklärung vor Veröffentlichung rechtlich prüfen lassen" />
   {
     lang === 'de' ? (

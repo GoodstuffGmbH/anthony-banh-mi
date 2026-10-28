@@ -14,7 +14,7 @@ const { lang } = Astro.props;
 const t = useT(lang);
 ---
 
-<TextPage {lang} routeKey="contact" title={t.contact.title} lead={t.contact.lead} description={t.contact.lead}>
+<TextPage {lang} routeKey="contact" title={t.contact.title} lead={t.contact.lead} seoTitle={t.seo.contact.title} description={t.seo.contact.description}>
   <h2>{t.locations.email}</h2>
   {site.email ? <Button href={`mailto:${site.email}`}>{site.email}</Button> : <Placeholder block text="E-Mail-Adresse" />}
 

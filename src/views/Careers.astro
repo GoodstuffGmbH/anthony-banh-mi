@@ -14,7 +14,7 @@ const { lang } = Astro.props;
 const t = useT(lang);
 ---
 
-<TextPage {lang} routeKey="careers" title={t.careers.title} lead={t.careers.lead} description={t.careers.lead}>
+<TextPage {lang} routeKey="careers" title={t.careers.title} lead={t.careers.lead} seoTitle={t.seo.careers.title} description={t.seo.careers.description}>
   <h2>{t.careers.jobs}</h2>
   <Placeholder block text="Offene Stellen (Titel, Umfang, Standort) oder Hinweis auf Initiativbewerbung" />
 

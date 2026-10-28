@@ -2,6 +2,7 @@
 // Gemeinsames Gerüst für Über uns, Franchise, Karriere, Kontakt, Impressum, Datenschutz.
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
+import RelatedLinks from '../components/RelatedLinks.astro';
 import { breadcrumb } from '../data/structured';
 import type { Lang, RouteKey } from '../i18n/routes';
 
@@ -9,18 +10,20 @@ interface Props {
   lang: Lang;
   routeKey: RouteKey;
   title: string;
+  seoTitle?: string;
   lead?: string;
   description: string;
 }
 
-const { lang, routeKey, title, lead, description } = Astro.props;
+const { lang, routeKey, title, seoTitle = title, lead, description } = Astro.props;
 ---
 
-<Base {lang} {routeKey} {title} {description} jsonLd={[breadcrumb(lang, routeKey, title)]}>
+<Base {lang} {routeKey} title={seoTitle} {description} jsonLd={[breadcrumb(lang, routeKey, title)]}>
   <PageHeader {lang} {title} {lead} />
   <div class="container section">
     <div class="prose">
       <slot />
     </div>
   </div>
+  <RelatedLinks {lang} current={routeKey} />
 </Base>

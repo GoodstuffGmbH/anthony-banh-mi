@@ -4,9 +4,44 @@ import type { Lang } from './routes';
 // hinaus ist Entwurf und wird vor Veröffentlichung redaktionell geprüft.
 const de = {
   meta: {
-    homeTitle: 'Anthony Bánh Mì – Vietnamese Sandwich House',
+    homeTitle: 'Anthony Bánh Mì – Vietnamesische Sandwiches & Kaffee',
     homeDescription:
       'Anthony Bánh Mì: frische Zutaten, authentische Aromen und moderne Café-Kultur. Speisekarte, Standorte, Franchise und Karriere.',
+  },
+  seo: {
+    menu: {
+      title: 'Speisekarte: Bánh mì, Kaffee & Frühstück',
+      description:
+        'Die Speisekarte von Anthony Bánh Mì: Bánh mì mit Hähnchen, Schwein, Ei oder Tofu, dazu Kaffee & Getränke, Frühstück, Kuchen und vegane Auswahl.',
+    },
+    locations: {
+      title: 'Standorte & Öffnungszeiten',
+      description:
+        'Alle Standorte von Anthony Bánh Mì mit Adresse, Öffnungszeiten und Route. Finde deinen nächsten Laden für Bánh mì und Kaffee.',
+    },
+    about: {
+      title: 'Über uns: Geschichte & Konzept',
+      description:
+        'Wer hinter Anthony Bánh Mì steht: unsere Geschichte, unser Konzept und was uns antreibt. Frische Zutaten, authentische Rezepte, moderne Café-Kultur.',
+    },
+    franchise: {
+      title: 'Franchise: Anthony Bánh Mì in deine Stadt',
+      description:
+        'Gemeinsam wachsen: Informationen zum Franchise-Konzept von Anthony Bánh Mì, zu den Voraussetzungen und zum Kontakt für Interessierte.',
+    },
+    careers: {
+      title: 'Karriere & Jobs',
+      description: 'Werde Teil des Teams von Anthony Bánh Mì: offene Stellen, Bewerbungsweg und Kontakt.',
+    },
+    contact: {
+      title: 'Kontakt',
+      description: 'So erreichst du Anthony Bánh Mì: E-Mail, Telefon und Standorte für Fragen, Lob und Franchise-Anfragen.',
+    },
+    imprint: { title: 'Impressum', description: 'Impressum von Anthony Bánh Mì: Anbieterkennzeichnung und Kontakt.' },
+    privacy: {
+      title: 'Datenschutzerklärung',
+      description: 'Datenschutzerklärung von Anthony Bánh Mì: keine Cookies, kein Tracking, Informationen zu deinen Rechten.',
+    },
   },
   a11y: {
     skip: 'Zum Inhalt springen',
@@ -95,7 +130,7 @@ const de = {
   },
   contact: {
     title: 'Kontakt',
-    lead: 'Fragen, Lob oder Anfragen für Catering und Franchise: schreib uns.',
+    lead: 'Fragen, Lob oder Franchise-Anfragen: schreib uns.',
     write: 'E-Mail schreiben',
     call: 'Anrufen',
   },
@@ -105,6 +140,9 @@ const de = {
   },
   footer: {
     rights: 'Alle Rechte vorbehalten.',
+  },
+  related: {
+    title: 'Mehr entdecken',
   },
   notFound: {
     title: 'Seite nicht gefunden',
@@ -120,6 +158,41 @@ const en: Dict = {
     homeTitle: 'Anthony Bánh Mì – Vietnamese Sandwich House',
     homeDescription:
       'Anthony Bánh Mì: fresh ingredients, authentic flavours and modern café culture. Menu, locations, franchise and careers.',
+  },
+  seo: {
+    menu: {
+      title: 'Menu: bánh mì, coffee & breakfast',
+      description:
+        'The Anthony Bánh Mì menu: bánh mì with chicken, pork, egg or tofu, plus coffee & drinks, breakfast, cakes and a vegan selection.',
+    },
+    locations: {
+      title: 'Locations & opening hours',
+      description:
+        'All Anthony Bánh Mì locations with address, opening hours and directions. Find your nearest shop for bánh mì and coffee.',
+    },
+    about: {
+      title: 'About us: story & concept',
+      description:
+        'Who is behind Anthony Bánh Mì: our story, our concept and what drives us. Fresh ingredients, authentic recipes, modern café culture.',
+    },
+    franchise: {
+      title: 'Franchise: bring Anthony Bánh Mì to your city',
+      description:
+        'Grow together: information on the Anthony Bánh Mì franchise concept, requirements and how to get in touch.',
+    },
+    careers: {
+      title: 'Careers & jobs',
+      description: 'Join the Anthony Bánh Mì team: open positions, how to apply and contact.',
+    },
+    contact: {
+      title: 'Contact',
+      description: 'How to reach Anthony Bánh Mì: email, phone and locations for questions, feedback and franchise enquiries.',
+    },
+    imprint: { title: 'Legal notice', description: 'Legal notice of Anthony Bánh Mì: provider information and contact.' },
+    privacy: {
+      title: 'Privacy policy',
+      description: 'Privacy policy of Anthony Bánh Mì: no cookies, no tracking, information about your rights.',
+    },
   },
   a11y: {
     skip: 'Skip to content',
@@ -208,7 +281,7 @@ const en: Dict = {
   },
   contact: {
     title: 'Contact',
-    lead: 'Questions, feedback, catering or franchise enquiries: write to us.',
+    lead: 'Questions, feedback or franchise enquiries: write to us.',
     write: 'Send an email',
     call: 'Call us',
   },
@@ -218,6 +291,9 @@ const en: Dict = {
   },
   footer: {
     rights: 'All rights reserved.',
+  },
+  related: {
+    title: 'Discover more',
   },
   notFound: {
     title: 'Page not found',

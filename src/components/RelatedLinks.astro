@@ -1,0 +1,84 @@
+---
+import Icon from './Icon.astro';
+import { href, type Lang, type RouteKey } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  current: RouteKey;
+}
+
+const { lang, current } = Astro.props;
+const t = useT(lang);
+const labels: Partial<Record<RouteKey, string>> = {
+  menu: t.nav.menu,
+  locations: t.nav.locations,
+  about: t.nav.about,
+  franchise: t.nav.franchise,
+  careers: t.nav.careers,
+  contact: t.nav.contact,
+};
+const links = (Object.keys(labels) as RouteKey[]).filter((k) => k !== current).slice(0, 4);
+---
+
+<nav class="related" aria-labelledby="mehr-entdecken">
+  <div class="container">
+    <h2 id="mehr-entdecken" class="label">{t.related.title}</h2>
+    <ul role="list">
+      {
+        links.map((k) => (
+          <li>
+            <a href={href(k, lang)}>
+              <span>{labels[k]}</span>
+              <Icon name="arrow" size={16} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .related {
+    padding-block: var(--space-xl);
+    border-top: 1px solid var(--color-surface-strong);
+  }
+
+  h2.label {
+    font-family: var(--font-text);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    color: var(--color-accent-text);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--space-sm);
+    margin: var(--space-md) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 3.5rem;
+    padding: 0 var(--space-md);
+    background: var(--color-surface);
+    color: var(--color-heading);
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-accent-text);
+    background: var(--color-surface-strong);
+  }
+</style>
