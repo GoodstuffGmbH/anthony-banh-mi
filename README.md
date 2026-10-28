@@ -25,3 +25,15 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 ## Deployment
 
 `dist/` per SFTP auf den Webspace laden (`.htaccess` für Apache/STRATO liegt bei) oder auf Netlify/Cloudflare Pages (`_headers`). Veröffentlichung nur nach Freigabe.
+
+## Offene Punkte vor Launch (RÜCKFRAGE)
+
+1. Speisekarte mit Preisen, Beschreibungen, Allergenen; Bestätigung der Bánh-mì-Sorten (Hähnchen, Schwein, Ei, Tofu)
+2. Standorte, Öffnungszeiten, Telefon, E-Mail
+3. Impressumsdaten; Impressum und Datenschutz rechtlich prüfen lassen
+4. Logo als SVG, Zustimmung zur Porträtnutzung
+5. Echte Produktfotos (aktuelle wirken KI-generiert)
+6. Hauptdomain (`anthonybanhmi.com`, `.de` oder `anthony-banhmi.de`) und Hosting
+7. Bereich-ID für die GG-Vorgangsakte
+
+Prüfberichte: `docs/faktencheck-2026-10-28.md`. Barrierefreiheit: axe-core (WCAG 2.2 AA) 0 Verstöße auf 15 Seiten × 2 Viewports (28.10.2026).
