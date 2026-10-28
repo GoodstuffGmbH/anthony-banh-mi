@@ -46,3 +46,20 @@ test('Schema verlangt DE- und EN-Namen', () => {
   bad.categories[0].name.en = '';
   assert.throws(() => Menu.parse(bad));
 });
+
+test('Allergene: null = offen, Liste = gepflegt, Feld ist Pflicht', () => {
+  const ok = structuredClone(menu);
+  ok.categories[3].items[0].allergens = ['A', 'C'];
+  assert.doesNotThrow(() => Menu.parse(ok));
+  const missing = structuredClone(menu);
+  delete missing.categories[3].items[0].allergens;
+  assert.throws(() => Menu.parse(missing));
+});
+
+test('Kartenlinks nur mit https (kein javascript:/data:)', () => {
+  const base = Locations.parse(locations)[0];
+  for (const bad of ['javascript:alert(1)', 'data:text/html,x', 'http://maps.example.org']) {
+    assert.throws(() => Locations.parse([{ ...base, mapUrl: bad }]), bad);
+  }
+  assert.doesNotThrow(() => Locations.parse([{ ...base, mapUrl: 'https://maps.example.org/?q=x' }]));
+});

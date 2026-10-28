@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import Placeholder from './Placeholder.astro';
 import type { LocationT } from '../data/schema';
+import { telHref } from '../lib/format';
 import type { Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -53,7 +54,7 @@ const t = useT(lang);
 
     <section>
       <h3 class="label"><Icon name="phone" size={18} /> {t.locations.phone}</h3>
-      {l.phone ? <a href={`tel:${l.phone.replace(/\s/g, '')}`}>{l.phone}</a> : <Placeholder text="Telefon" />}
+      {l.phone ? <a href={telHref(l.phone)}>{l.phone}</a> : <Placeholder text="Telefon" />}
     </section>
   </div>
 

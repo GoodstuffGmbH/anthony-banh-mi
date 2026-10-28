@@ -4,6 +4,8 @@ import { z } from 'zod';
 // Seite zeigt einen RÜCKFRAGE-Platzhalter. Nichts wird erfunden.
 const Localized = z.object({ de: z.string().min(1), en: z.string().min(1) });
 const Slug = z.string().regex(/^[a-z0-9-]+$/);
+// Externe Links nur https: kein javascript:/data: in href.
+const HttpsUrl = z.url({ protocol: /^https$/ });
 
 export const MenuItem = z.object({
   id: Slug,
@@ -11,6 +13,8 @@ export const MenuItem = z.object({
   description: Localized.nullable(),
   price: z.number().positive().nullable(),
   image: Slug.nullable(),
+  // null = noch nicht geliefert, [] = keine kennzeichnungspflichtigen Allergene
+  allergens: z.array(z.string().min(1)).nullable(),
   tags: z.array(z.enum(['vegan', 'vegetarisch', 'scharf'])),
 });
 
@@ -35,7 +39,7 @@ export const Location = z.object({
   phone: z.string().nullable(),
   email: z.email().nullable(),
   hours: z.array(z.object({ days: Localized, time: z.string() })).nullable(),
-  mapUrl: z.url().nullable(),
+  mapUrl: HttpsUrl.nullable(),
 });
 
 export const Locations = z.array(Location);
@@ -47,7 +51,7 @@ export const Site = z.object({
   indexable: z.boolean(),
   email: z.email().nullable(),
   phone: z.string().nullable(),
-  social: z.array(z.object({ label: z.string(), url: z.url() })),
+  social: z.array(z.object({ label: z.string(), url: HttpsUrl })),
   operator: z.object({
     company: z.string().nullable(),
     representative: z.string().nullable(),

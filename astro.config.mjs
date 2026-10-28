@@ -2,10 +2,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { routes } from './src/i18n/routes.ts';
+import siteData from './src/data/site.json' with { type: 'json' };
 
-const SITE = 'https://www.anthonybanhmi.com';
+// Domain nur in src/data/site.json pflegen (Hauptdomain: RÜCKFRAGE offen).
+const SITE = siteData.url;
 
-// Hauptdomain noch offen (RÜCKFRAGE, siehe docs/specs). Bis dahin .com.
 export default defineConfig({
   site: SITE,
   trailingSlash: 'always',
@@ -28,7 +29,6 @@ export default defineConfig({
             { lang: 'x-default', url: SITE + route.de },
           ];
         }
-        item.lastmod = new Date().toISOString();
         return item;
       },
     }),

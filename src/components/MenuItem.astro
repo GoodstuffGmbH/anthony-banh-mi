@@ -42,7 +42,8 @@ const price = item.price
     </header>
     {item.description ? <p>{item.description[lang]}</p> : <Placeholder text="Beschreibung und Zutaten" />}
     <p class="allergens">
-      {t.menu.allergens}: <Placeholder text="Allergene" />
+      {t.menu.allergens}:{' '}
+      {item.allergens === null ? <Placeholder text="Allergene" /> : item.allergens.length ? item.allergens.join(', ') : t.menu.allergensNone}
     </p>
   </div>
 </article>

@@ -4,17 +4,12 @@ import Icon from './Icon.astro';
 interface Props {
   href: string;
   variant?: 'solid' | 'outline' | 'link';
-  external?: boolean;
 }
 
-const { href, variant = 'solid', external = false } = Astro.props;
+const { href, variant = 'solid' } = Astro.props;
 ---
 
-<a
-  class:list={['button', variant]}
-  href={href}
-  {...external ? { rel: 'noopener', target: '_blank' } : {}}
->
+<a class:list={['button', variant]} href={href}>
   <span class="label"><slot /></span>
   <Icon name="arrow" size={16} />
 </a>

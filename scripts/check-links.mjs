@@ -8,13 +8,27 @@ const pages = readdirSync(root, { recursive: true }).map(String).filter((f) => f
 const html = new Map(pages.map((p) => [p, readFileSync(join(root, p), 'utf8')]));
 
 function resolve(path) {
-  const file = join(root, decodeURIComponent(path));
+  let decoded;
+  try {
+    decoded = decodeURIComponent(path);
+  } catch {
+    return null;
+  }
+  const file = join(root, decoded);
   if (existsSync(file) && statSync(file).isFile()) return file;
   const index = join(file, 'index.html');
   return existsSync(index) ? index : null;
 }
 
-const ids = (text) => new Set([...text.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+// Anker je Zieldatei nur einmal einlesen.
+const idCache = new Map();
+function ids(file) {
+  if (!idCache.has(file)) {
+    const text = readFileSync(file, 'utf8');
+    idCache.set(file, new Set([...text.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
+  }
+  return idCache.get(file);
+}
 const errors = [];
 
 for (const [page, text] of html) {
@@ -23,13 +37,14 @@ for (const [page, text] of html) {
     const urls = attr === 'srcset' ? value.split(',').map((s) => s.trim().split(/\s+/)[0]) : [value];
     for (const url of urls) {
       if (/^(https?:|mailto:|tel:|data:)/.test(url)) continue;
-      const [path, hash] = url.split('#');
+      const [withQuery, hash] = url.split('#');
+      const path = withQuery.split('?')[0];
       const target = path === '' ? join(root, page) : resolve(path.startsWith('/') ? path : join(self, path));
       if (!target) {
         errors.push(`${page}: ${url} (Ziel fehlt)`);
         continue;
       }
-      if (hash && target.endsWith('.html') && !ids(readFileSync(target, 'utf8')).has(hash)) {
+      if (hash && target.endsWith('.html') && !ids(target).has(hash)) {
         errors.push(`${page}: ${url} (Anker fehlt)`);
       }
     }

@@ -87,7 +87,12 @@ const de = {
     franchiseText: ['Gemeinsam wachsen.', 'Bring Anthony Bánh Mì in deine Stadt.'],
     franchiseCta: 'Mehr erfahren',
     valuesTitle: 'Wofür wir stehen',
-    values: ['Frische Zutaten', 'Authentische Rezepte', 'Moderne Café-Kultur', 'Nachhaltiges Handeln'],
+    values: {
+      fresh: 'Frische Zutaten',
+      authentic: 'Authentische Rezepte',
+      cafe: 'Moderne Café-Kultur',
+      sustainable: 'Nachhaltiges Handeln',
+    },
   },
   menu: {
     title: 'Speisekarte',
@@ -97,6 +102,7 @@ const de = {
     price: 'Preis',
     priceNote: 'Alle Preise in Euro inkl. MwSt.',
     allergens: 'Allergene und Zusatzstoffe',
+    allergensNone: 'keine kennzeichnungspflichtigen',
   },
   locations: {
     title: 'Standorte',
@@ -238,7 +244,12 @@ const en: Dict = {
     franchiseText: ['Grow together.', 'Bring Anthony Bánh Mì to your city.'],
     franchiseCta: 'Learn more',
     valuesTitle: 'What we stand for',
-    values: ['Fresh ingredients', 'Authentic recipes', 'Modern café culture', 'Sustainable business'],
+    values: {
+      fresh: 'Fresh ingredients',
+      authentic: 'Authentic recipes',
+      cafe: 'Modern café culture',
+      sustainable: 'Sustainable business',
+    },
   },
   menu: {
     title: 'Menu',
@@ -248,6 +259,7 @@ const en: Dict = {
     price: 'Price',
     priceNote: 'All prices in euros incl. VAT.',
     allergens: 'Allergens and additives',
+    allergensNone: 'none requiring declaration',
   },
   locations: {
     title: 'Locations',

@@ -26,7 +26,12 @@ const categoryIcons: Record<string, IconName> = {
   'snacks-lunch': 'leaf',
   'vegan-vegetarisch': 'leaf',
 };
-const valueIcons: IconName[] = ['leaf', 'heart', 'star', 'globe'];
+const valueIcons: Record<keyof typeof t.home.values, IconName> = {
+  fresh: 'leaf',
+  authentic: 'heart',
+  cafe: 'star',
+  sustainable: 'globe',
+};
 ---
 
 <Base
@@ -139,10 +144,10 @@ const valueIcons: IconName[] = ['leaf', 'heart', 'star', 'globe'];
       <h2 id="werte" class="visually-hidden">{t.home.valuesTitle}</h2>
       <ul class="values" role="list">
         {
-          t.home.values.map((v, i) => (
+          Object.entries(t.home.values).map(([key, label]) => (
             <li>
-              <Icon name={valueIcons[i]} size={32} />
-              <span class="label">{v}</span>
+              <Icon name={valueIcons[key as keyof typeof valueIcons]} size={32} />
+              <span class="label">{label}</span>
             </li>
           ))
         }

@@ -3,64 +3,95 @@
   "categories": [
     {
       "id": "kaffee-getraenke",
-      "name": { "de": "Kaffee & Getränke", "en": "Coffee & Drinks" },
+      "name": {
+        "de": "Kaffee & Getränke",
+        "en": "Coffee & Drinks"
+      },
       "image": null,
       "items": []
     },
     {
       "id": "fruehstueck",
-      "name": { "de": "Frühstück", "en": "Breakfast" },
+      "name": {
+        "de": "Frühstück",
+        "en": "Breakfast"
+      },
       "image": "banhmi-ei",
       "items": []
     },
     {
       "id": "kuchen-desserts",
-      "name": { "de": "Kuchen & Desserts", "en": "Cakes & Desserts" },
+      "name": {
+        "de": "Kuchen & Desserts",
+        "en": "Cakes & Desserts"
+      },
       "image": null,
       "items": []
     },
     {
       "id": "snacks-lunch",
-      "name": { "de": "Snacks / Lunch", "en": "Snacks / Lunch" },
+      "name": {
+        "de": "Snacks / Lunch",
+        "en": "Snacks / Lunch"
+      },
       "image": "banhmi-schwein",
       "items": [
         {
           "id": "banh-mi-haehnchen",
-          "name": { "de": "Bánh mì Hähnchen", "en": "Bánh mì Chicken" },
+          "name": {
+            "de": "Bánh mì Hähnchen",
+            "en": "Bánh mì Chicken"
+          },
           "description": null,
           "price": null,
           "image": "banhmi-haehnchen",
+          "allergens": null,
           "tags": []
         },
         {
           "id": "banh-mi-schwein",
-          "name": { "de": "Bánh mì Schwein", "en": "Bánh mì Pork" },
+          "name": {
+            "de": "Bánh mì Schwein",
+            "en": "Bánh mì Pork"
+          },
           "description": null,
           "price": null,
           "image": "banhmi-schwein",
+          "allergens": null,
           "tags": []
         },
         {
           "id": "banh-mi-ei",
-          "name": { "de": "Bánh mì Ei", "en": "Bánh mì Egg" },
+          "name": {
+            "de": "Bánh mì Ei",
+            "en": "Bánh mì Egg"
+          },
           "description": null,
           "price": null,
           "image": "banhmi-ei",
+          "allergens": null,
           "tags": []
         }
       ]
     },
     {
       "id": "vegan-vegetarisch",
-      "name": { "de": "Vegan / Vegetarisch", "en": "Vegan / Vegetarian" },
+      "name": {
+        "de": "Vegan / Vegetarisch",
+        "en": "Vegan / Vegetarian"
+      },
       "image": "banhmi-tofu",
       "items": [
         {
           "id": "banh-mi-tofu",
-          "name": { "de": "Bánh mì Tofu", "en": "Bánh mì Tofu" },
+          "name": {
+            "de": "Bánh mì Tofu",
+            "en": "Bánh mì Tofu"
+          },
           "description": null,
           "price": null,
           "image": "banhmi-tofu",
+          "allergens": null,
           "tags": []
         }
       ]
