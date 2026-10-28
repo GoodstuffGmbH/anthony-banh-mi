@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import TextPage from './TextPage.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { image } from '../data';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<TextPage {lang} routeKey="about" title={t.about.title} lead={t.about.lead} description={t.about.lead}>
+  <Image src={image('logo-portrait')} alt={t.about.portraitAlt} width={200} height={200} densities={[1, 2]} class="portrait" />
+
+  <h2 id="geschichte">{t.about.story}</h2>
+  <Placeholder block text="Geschichte von Anthony und dem Laden (Herkunft, Gründung, Jahr) – Text vom Restaurant" />
+
+  <h2 id="konzept">{t.about.concept}</h2>
+  {
+    lang === 'de' ? (
+      <p>
+        Bánh mì ist das vietnamesische Baguette-Sandwich: knuspriges Brot, herzhafte Füllung, eingelegtes Gemüse und
+        frische Kräuter. Bei uns gibt es dazu Kaffee, Frühstück, Kuchen und eine eigene vegane und vegetarische Auswahl.
+      </p>
+    ) : (
+      <p>
+        Bánh mì is the Vietnamese baguette sandwich: crisp bread, a savoury filling, pickled vegetables and fresh herbs.
+        We also serve coffee, breakfast, cakes and our own vegan and vegetarian selection.
+      </p>
+    )
+  }
+  <Placeholder block text="Konzept in eigenen Worten (Zutaten, Herkunft, Café-Kultur, Nachhaltigkeit) – Text vom Restaurant" />
+</TextPage>
+
+<style>
+  .portrait {
+    border-radius: 50%;
+    margin-bottom: var(--space-lg);
+  }
+</style>

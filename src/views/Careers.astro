@@ -1,0 +1,29 @@
+---
+import TextPage from './TextPage.astro';
+import Button from '../components/Button.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { site } from '../data';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<TextPage {lang} routeKey="careers" title={t.careers.title} lead={t.careers.lead} description={t.careers.lead}>
+  <h2>{t.careers.jobs}</h2>
+  <Placeholder block text="Offene Stellen (Titel, Umfang, Standort) oder Hinweis auf Initiativbewerbung" />
+
+  <h2>{t.careers.apply}</h2>
+  {
+    site.email ? (
+      <Button href={`mailto:${site.email}?subject=Bewerbung`}>{t.contact.write}</Button>
+    ) : (
+      <Placeholder block text="Bewerbungsweg und E-Mail-Adresse" />
+    )
+  }
+</TextPage>

@@ -1,0 +1,75 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  title: string;
+  text: string;
+  cta: string;
+  href: string;
+  icon?: IconName;
+  variant: 'inverse' | 'plain';
+}
+
+const { title, text, cta, href, icon, variant } = Astro.props;
+---
+
+<article class:list={['card', variant]}>
+  <div class="visual">
+    <slot name="visual">{icon && <Icon name={icon} size={40} />}</slot>
+  </div>
+  <h2 class="title">{title}</h2>
+  <p>{text}</p>
+  <a class="cta label" href={href}>
+    {cta}
+    <Icon name="arrow" size={16} />
+    <span class="stretch" aria-hidden="true"></span>
+  </a>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: var(--space-sm);
+    min-height: 20rem;
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+  }
+
+  .plain {
+    background: var(--color-surface);
+  }
+
+  .inverse {
+    background: var(--color-inverse);
+  }
+
+  .title {
+    font-size: var(--fs-h3);
+  }
+
+  .visual {
+    color: var(--color-accent-text);
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-xs);
+    color: var(--color-accent-text);
+    text-decoration: none;
+  }
+
+  /* Ganze Karte klickbar, Fokus bleibt am Link. */
+  .stretch {
+    position: absolute;
+    inset: 0;
+  }
+
+  .card:hover .cta {
+    text-decoration: underline;
+  }
+</style>

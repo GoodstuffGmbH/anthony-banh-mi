@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import LocationCard from '../components/LocationCard.astro';
+import { locations } from '../data';
+import { breadcrumb, restaurant } from '../data/structured';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<Base
+  {lang}
+  routeKey="locations"
+  title={t.locations.title}
+  description={t.locations.lead}
+  jsonLd={[restaurant(lang), breadcrumb(lang, 'locations', t.locations.title)]}
+>
+  <PageHeader {lang} title={t.locations.title} lead={t.locations.lead} />
+  <div class="container section list">
+    {locations.map((location) => <LocationCard {location} {lang} />)}
+  </div>
+</Base>
+
+<style>
+  .list {
+    display: grid;
+    gap: var(--space-lg);
+  }
+</style>

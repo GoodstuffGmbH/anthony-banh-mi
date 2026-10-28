@@ -1,0 +1,118 @@
+---
+import Icon from './Icon.astro';
+import Placeholder from './Placeholder.astro';
+import type { LocationT } from '../data/schema';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  location: LocationT;
+  lang: Lang;
+}
+
+const { location: l, lang } = Astro.props;
+const t = useT(lang);
+---
+
+<article class="location" id={l.id}>
+  <h2>{l.name ?? <Placeholder text="Name des Standorts" />}</h2>
+
+  <div class="facts">
+    <section>
+      <h3 class="label"><Icon name="pin" size={18} /> {t.locations.address}</h3>
+      {
+        l.street && l.city ? (
+          <address>
+            {l.street}
+            <br />
+            {l.postalCode} {l.city}
+          </address>
+        ) : (
+          <Placeholder text="Straße, PLZ, Ort" />
+        )
+      }
+    </section>
+
+    <section>
+      <h3 class="label"><Icon name="clock" size={18} /> {t.locations.hours}</h3>
+      {
+        l.hours ? (
+          <dl>
+            {l.hours.map((h) => (
+              <>
+                <dt>{h.days[lang]}</dt>
+                <dd>{h.time}</dd>
+              </>
+            ))}
+          </dl>
+        ) : (
+          <Placeholder text="Öffnungszeiten" />
+        )
+      }
+    </section>
+
+    <section>
+      <h3 class="label"><Icon name="phone" size={18} /> {t.locations.phone}</h3>
+      {l.phone ? <a href={`tel:${l.phone.replace(/\s/g, '')}`}>{l.phone}</a> : <Placeholder text="Telefon" />}
+    </section>
+  </div>
+
+  {
+    l.mapUrl && (
+      <a class="map label" href={l.mapUrl} rel="noopener" target="_blank">
+        {t.locations.map}
+        <span class="visually-hidden"> ({t.locations.mapNote})</span>
+        <Icon name="arrow" size={16} />
+      </a>
+    )
+  }
+</article>
+
+<style>
+  .location {
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--color-surface);
+    border-top: 3px solid var(--color-accent);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  h3.label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-text);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    color: var(--color-accent-text);
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2xs) var(--space-sm);
+    margin: 0;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .map {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-lg);
+    text-decoration: none;
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import { Picture } from 'astro:assets';
+import Placeholder from './Placeholder.astro';
+import { image } from '../data';
+import type { MenuItemT } from '../data/schema';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  item: MenuItemT;
+  lang: Lang;
+}
+
+const { item, lang } = Astro.props;
+const t = useT(lang);
+const price = item.price
+  ? new Intl.NumberFormat(lang === 'de' ? 'de-DE' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(item.price)
+  : null;
+---
+
+<article class="item">
+  {
+    item.image && (
+      <Picture
+        src={image(item.image)}
+        alt={item.name[lang]}
+        widths={[320, 480, 640]}
+        sizes="(width < 45rem) 100vw, 320px"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        class="photo"
+      />
+    )
+  }
+  <div class="body">
+    <header class="head">
+      <h3>{item.name[lang]}</h3>
+      <p class="price">
+        <span class="visually-hidden">{t.menu.price}: </span>
+        {price ?? <Placeholder text="Preis" />}
+      </p>
+    </header>
+    {item.description ? <p>{item.description[lang]}</p> : <Placeholder text="Beschreibung und Zutaten" />}
+    <p class="allergens">
+      {t.menu.allergens}: <Placeholder text="Allergene" />
+    </p>
+  </div>
+</article>
+
+<style>
+  .item {
+    display: grid;
+    background: var(--color-surface);
+  }
+
+  .photo :global(img),
+  .photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .body {
+    display: grid;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+
+  .price {
+    font-weight: 500;
+    color: var(--color-accent-text);
+    white-space: nowrap;
+  }
+
+  .allergens {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+</style>

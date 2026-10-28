@@ -1,0 +1,33 @@
+---
+// Sichtbarer Platzhalter für fehlende Inhalte. scripts/check-launch.mjs sperrt
+// den Launch, solange einer im Build steht.
+interface Props {
+  text: string;
+  block?: boolean;
+}
+
+const { text, block = false } = Astro.props;
+const Tag = block ? 'p' : 'span';
+---
+
+<Tag class:list={['placeholder', { block }]} data-placeholder>[RÜCKFRAGE: {text}]</Tag>
+
+<style>
+  .placeholder {
+    display: inline;
+    padding: 0.1em 0.4em;
+    background: repeating-linear-gradient(-45deg, #fff4c2, #fff4c2 6px, #ffeaa0 6px, #ffeaa0 12px);
+    color: #4a3a00;
+    font-family: var(--font-text);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    border: 1px dashed #a17d00;
+  }
+
+  .block {
+    display: block;
+    padding: var(--space-sm);
+  }
+</style>

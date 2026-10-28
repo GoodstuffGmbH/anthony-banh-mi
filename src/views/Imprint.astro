@@ -1,0 +1,54 @@
+---
+import TextPage from './TextPage.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { site } from '../data';
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+const o = site.operator;
+---
+
+<TextPage {lang} routeKey="imprint" title={t.legal.imprintTitle} description={t.legal.imprintTitle}>
+  {
+    lang === 'en' && (
+      <p>
+        The legally binding version of this page is the <a href={href('imprint', 'de')} hreflang="de" lang="de">German Impressum</a>.
+      </p>
+    )
+  }
+  <Placeholder block text="Impressum vor Veröffentlichung rechtlich prüfen lassen" />
+
+  <h2>{lang === 'de' ? 'Angaben gemäß § 5 DDG' : 'Information pursuant to § 5 DDG'}</h2>
+  <p>
+    {o.company ?? <Placeholder text="Betreiber (Firma und Rechtsform)" />}
+    <br />
+    {o.street ?? <Placeholder text="Straße und Hausnummer" />}
+    <br />
+    {o.postalCode && o.city ? `${o.postalCode} ${o.city}` : <Placeholder text="PLZ und Ort" />}
+  </p>
+
+  <h3>{lang === 'de' ? 'Vertreten durch' : 'Represented by'}</h3>
+  <p>{o.representative ?? <Placeholder text="Vertretungsberechtigte Person(en)" />}</p>
+
+  <h3>{lang === 'de' ? 'Kontakt' : 'Contact'}</h3>
+  <p>
+    {t.locations.email}: {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <Placeholder text="E-Mail" />}
+    <br />
+    {t.locations.phone}: {site.phone ?? <Placeholder text="Telefon" />}
+  </p>
+
+  <h3>{lang === 'de' ? 'Registereintrag' : 'Register entry'}</h3>
+  <p>{o.register ?? <Placeholder text="Registergericht und Registernummer (falls eingetragen)" />}</p>
+
+  <h3>{lang === 'de' ? 'Umsatzsteuer-ID' : 'VAT ID'}</h3>
+  <p>{o.vatId ?? <Placeholder text="USt-IdNr. gemäß § 27a UStG (falls vorhanden)" />}</p>
+
+  <h3>{lang === 'de' ? 'Verbraucherstreitbeilegung' : 'Consumer dispute resolution'}</h3>
+  <Placeholder block text="Erklärung nach § 36 VSBG (Teilnahme an Streitbeilegungsverfahren ja/nein)" />
+</TextPage>

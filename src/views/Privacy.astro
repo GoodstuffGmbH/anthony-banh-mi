@@ -1,0 +1,81 @@
+---
+import TextPage from './TextPage.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<TextPage {lang} routeKey="privacy" title={t.legal.privacyTitle} description={t.legal.privacyTitle}>
+  <Placeholder block text="Datenschutzerklärung vor Veröffentlichung rechtlich prüfen lassen" />
+  {
+    lang === 'de' ? (
+      <>
+        <h2>1. Verantwortlicher</h2>
+        <p>
+          Verantwortlich ist der im <a href={href('imprint', lang)}>Impressum</a> genannte Betreiber.
+        </p>
+
+        <h2>2. Hosting und Server-Logfiles</h2>
+        <p>
+          Diese Website wird bei <Placeholder text="Hosting-Anbieter mit Anschrift" /> betrieben. Beim Aufruf verarbeitet
+          der Server technisch notwendige Daten (IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser-Kennung), um
+          die Seite auszuliefern und die Sicherheit zu gewährleisten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+          Speicherdauer: <Placeholder text="Speicherdauer der Logfiles laut Hoster" />.
+        </p>
+
+        <h2>3. Keine Cookies, kein Tracking</h2>
+        <p>
+          Diese Website setzt keine Cookies und verwendet keine Analyse- oder Werbedienste. Schriftarten werden vom
+          eigenen Server geladen, nicht von Dritten.
+        </p>
+
+        <h2>4. Kontakt per E-Mail oder Telefon</h2>
+        <p>
+          Wenn du uns kontaktierst, verarbeiten wir deine Angaben, um die Anfrage zu beantworten. Rechtsgrundlage ist
+          Art. 6 Abs. 1 lit. b DSGVO bei vertragsbezogenen Anfragen, sonst Art. 6 Abs. 1 lit. f DSGVO.
+        </p>
+
+        <h2>5. Externe Links</h2>
+        <p>
+          Links zu Kartendiensten öffnen eine externe Seite. Erst dann gelten die Datenschutzbestimmungen des jeweiligen
+          Anbieters.
+        </p>
+
+        <h2>6. Deine Rechte</h2>
+        <p>
+          Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit
+          und Widerspruch (Art. 15 bis 21 DSGVO) sowie das Recht auf Beschwerde bei einer Datenschutz-Aufsichtsbehörde
+          (Art. 77 DSGVO).
+        </p>
+      </>
+    ) : (
+      <>
+        <p>
+          The legally binding version of this page is the{' '}
+          <a href={href('privacy', 'de')} hreflang="de" lang="de">
+            German Datenschutzerklärung
+          </a>
+          .
+        </p>
+        <h2>Summary</h2>
+        <ul>
+          <li>This website sets no cookies and uses no analytics or advertising services.</li>
+          <li>Fonts are served from our own server.</li>
+          <li>
+            The web server processes technically necessary data (IP address, time, requested page, browser) to deliver
+            the site (Art. 6(1)(f) GDPR).
+          </li>
+          <li>If you contact us, we use your details only to answer your request.</li>
+          <li>You have the rights under Art. 15 to 21 and Art. 77 GDPR.</li>
+        </ul>
+      </>
+    )
+  }
+</TextPage>

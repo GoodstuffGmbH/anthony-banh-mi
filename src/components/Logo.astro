@@ -1,0 +1,106 @@
+---
+import { Image } from 'astro:assets';
+import { image } from '../data';
+
+// Vorläufig: Porträt aus dem Entwurf ausgeschnitten, Wortmarke als Text.
+// RÜCKFRAGE offen: Logo als SVG und Zustimmung zur Porträtnutzung.
+interface Props {
+  variant?: 'horizontal' | 'stacked';
+  size?: number;
+  eager?: boolean;
+}
+
+const { variant = 'horizontal', size = 56, eager = false } = Astro.props;
+---
+
+<span class:list={['logo', variant]}>
+  <Image
+    src={image('logo-portrait')}
+    alt=""
+    width={size}
+    height={size}
+    densities={[1, 2]}
+    loading={eager ? 'eager' : 'lazy'}
+    class="portrait"
+  />
+  <span class="wordmark" aria-hidden="true">
+    <span class="name">Anthony</span>
+    <span class="sub">Bánh Mì</span>
+    <span class="tag">Vietnamese Sandwich House</span>
+  </span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-heading);
+  }
+
+  .portrait {
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .wordmark {
+    display: grid;
+    justify-items: center;
+    line-height: 1;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .sub {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: 0.15em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent-text);
+  }
+
+  .sub::before,
+  .sub::after {
+    content: '';
+    width: 1.1em;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .tag {
+    margin-top: 0.35em;
+    font-family: var(--font-text);
+    font-size: 0.45rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .stacked {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .stacked .name {
+    font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  }
+
+  .stacked .sub {
+    font-size: 1.25rem;
+  }
+
+  .stacked .tag {
+    font-size: 0.75rem;
+  }
+</style>

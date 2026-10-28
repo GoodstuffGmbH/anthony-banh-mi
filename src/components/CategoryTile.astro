@@ -1,0 +1,97 @@
+---
+import { Picture } from 'astro:assets';
+import Icon, { type IconName } from './Icon.astro';
+import { image } from '../data';
+
+interface Props {
+  href: string;
+  label: string;
+  imageKey: string | null;
+  fallbackIcon: IconName;
+  photoSoon: string;
+}
+
+const { href, label, imageKey, fallbackIcon, photoSoon } = Astro.props;
+---
+
+<a class="tile" href={href}>
+  {
+    imageKey ? (
+      <Picture
+        src={image(imageKey)}
+        alt=""
+        widths={[240, 360, 480]}
+        sizes="(width < 45rem) 70vw, (width < 64rem) 30vw, 230px"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        class="media"
+      />
+    ) : (
+      <span class="media empty">
+        <Icon name={fallbackIcon} size={40} />
+        <span class="soon">{photoSoon}</span>
+      </span>
+    )
+  }
+  <span class="caption">
+    <span class="label">{label}</span>
+    <Icon name="arrow" size={16} />
+  </span>
+</a>
+
+<style>
+  .tile {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    box-shadow: var(--shadow-1);
+    transition: box-shadow 0.2s;
+  }
+
+  .tile:hover {
+    box-shadow: var(--shadow-2);
+  }
+
+  .media,
+  .media :global(img) {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .empty {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-xs);
+    background: var(--color-inverse);
+    color: var(--color-accent-on-inverse);
+  }
+
+  .soon {
+    font-size: var(--fs-small);
+    color: var(--cream-200);
+  }
+
+  .caption {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-sm);
+    text-align: center;
+  }
+
+  .tile:hover .caption {
+    color: var(--color-accent-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile {
+      transition: none;
+    }
+  }
+</style>

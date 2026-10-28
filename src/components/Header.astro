@@ -1,0 +1,339 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { menu } from '../data';
+import { href, otherLang, routes, type Lang, type RouteKey } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  routeKey?: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const t = useT(lang);
+const other = otherLang(lang);
+const switchHref = routes[routeKey ?? 'home'][other];
+
+const groups = [
+  {
+    key: 'menu',
+    label: t.nav.menu,
+    links: [
+      { href: href('menu', lang), label: t.nav.menuAll },
+      ...menu.categories.map((c) => ({ href: href('menu', lang, c.id), label: c.name[lang] })),
+    ],
+  },
+  {
+    key: 'locations',
+    label: t.nav.locations,
+    links: [{ href: href('locations', lang), label: t.nav.locationsAll }],
+  },
+  {
+    key: 'about',
+    label: t.nav.about,
+    links: [
+      { href: href('about', lang, 'geschichte'), label: t.nav.aboutStory },
+      { href: href('about', lang, 'konzept'), label: t.nav.aboutConcept },
+    ],
+  },
+] as const;
+
+const singles = [
+  { key: 'franchise', label: t.nav.franchise },
+  { key: 'careers', label: t.nav.careers },
+  { key: 'contact', label: t.nav.contact },
+] as const;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="home" href={href('home', lang)} aria-label={t.a11y.home}>
+      <Logo eager />
+    </a>
+
+    <button class="toggle" type="button" popovertarget="site-nav" aria-label={t.a11y.menu}>
+      <Icon name="menu" />
+    </button>
+
+    <nav id="site-nav" class="nav" popover aria-label={t.a11y.mainNav}>
+      <button class="close" type="button" popovertarget="site-nav" popovertargetaction="hide" aria-label={t.a11y.closeMenu}>
+        <Icon name="close" />
+      </button>
+      <ul class="list" role="list">
+        {
+          groups.map((g) => (
+            <li>
+              <details name="hauptnavigation" class="group">
+                <summary class:list={['link', 'label', { current: routeKey === g.key }]}>
+                  {g.label}
+                  <Icon name="chevron" size={14} class="chevron" />
+                </summary>
+                <ul class="sub" role="list">
+                  {g.links.map((l) => (
+                    <li>
+                      <a href={l.href}>{l.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </li>
+          ))
+        }
+        {
+          singles.map((s) => (
+            <li>
+              <a
+                class:list={['link', 'label', { current: routeKey === s.key }]}
+                href={href(s.key, lang)}
+                aria-current={routeKey === s.key ? 'page' : undefined}
+              >
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="lang label" role="group" aria-label={t.a11y.langSwitch}>
+        <span class="active">{lang.toUpperCase()}</span>
+        <span aria-hidden="true">|</span>
+        <a href={switchHref} hreflang={other} lang={other}>{other.toUpperCase()}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Untermenüs schließen bei Klick außerhalb und mit Escape.
+  const groups = () => document.querySelectorAll<HTMLDetailsElement>('.site-header details[open]');
+
+  document.addEventListener('click', (event) => {
+    for (const d of groups()) if (!d.contains(event.target as Node)) d.open = false;
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    for (const d of groups()) {
+      d.open = false;
+      d.querySelector('summary')?.focus();
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--color-bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-surface-strong);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--header-height);
+    gap: var(--space-md);
+  }
+
+  .home {
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  .toggle,
+  .close {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-heading);
+    cursor: pointer;
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    min-height: 2.75rem;
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary.link::-webkit-details-marker {
+    display: none;
+  }
+
+  .link:hover,
+  .link.current {
+    color: var(--color-accent-text);
+  }
+
+  .link.current {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 0.5em;
+  }
+
+  details[open] .chevron {
+    rotate: 180deg;
+  }
+
+  .sub a {
+    display: block;
+    padding: var(--space-xs) var(--space-sm);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .sub a:hover {
+    color: var(--color-accent-text);
+    background: var(--color-surface);
+  }
+
+  .lang {
+    display: flex;
+    gap: var(--space-xs);
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .lang .active {
+    color: var(--color-text);
+  }
+
+  .lang a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .lang a:hover {
+    color: var(--color-accent-text);
+  }
+
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sub {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Mobil: Navigation als Popover von rechts. */
+  @media (width < 64rem) {
+    .nav {
+      inset: 0 0 0 auto;
+      width: min(22rem, 85vw);
+      height: 100svh;
+      max-height: none;
+      margin: 0;
+      padding: var(--space-lg) var(--space-md);
+      border: 0;
+      background: var(--color-bg);
+      color: var(--color-text);
+      box-shadow: var(--shadow-2);
+      overflow-y: auto;
+    }
+
+    .nav::backdrop {
+      background: rgb(11 32 22 / 0.5);
+    }
+
+    .close {
+      position: absolute;
+      top: var(--space-sm);
+      right: var(--space-sm);
+    }
+
+    .list {
+      display: grid;
+      gap: var(--space-2xs);
+      margin-top: var(--space-xl);
+    }
+
+    .sub {
+      padding-left: var(--space-sm);
+      border-left: 1px solid var(--color-accent);
+    }
+
+    .lang {
+      margin-top: var(--space-lg);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .nav {
+        transition:
+          translate 0.25s ease-out,
+          display 0.25s allow-discrete,
+          overlay 0.25s allow-discrete;
+        translate: 100% 0;
+      }
+
+      .nav:popover-open {
+        translate: 0 0;
+      }
+
+      @starting-style {
+        .nav:popover-open {
+          translate: 100% 0;
+        }
+      }
+    }
+  }
+
+  /* Desktop: Navigation inline, Untermenüs als Flyout. */
+  @media (width >= 64rem) {
+    .toggle,
+    .close {
+      display: none;
+    }
+
+    .nav {
+      display: flex;
+      position: static;
+      inset: auto;
+      align-items: center;
+      gap: clamp(var(--space-md), 3vw, var(--space-xl));
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: inherit;
+      overflow: visible;
+    }
+
+    .list {
+      display: flex;
+      gap: clamp(var(--space-sm), 2vw, var(--space-lg));
+    }
+
+    .group {
+      position: relative;
+    }
+
+    .sub {
+      position: absolute;
+      top: 100%;
+      left: calc(-1 * var(--space-sm));
+      min-width: 14rem;
+      padding: var(--space-xs) 0;
+      background: var(--color-bg);
+      border-top: 2px solid var(--color-accent);
+      box-shadow: var(--shadow-2);
+    }
+  }
+</style>

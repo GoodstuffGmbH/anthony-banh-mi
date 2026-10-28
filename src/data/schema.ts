@@ -33,9 +33,9 @@ export const Location = z.object({
   postalCode: z.string().nullable(),
   city: z.string().nullable(),
   phone: z.string().nullable(),
-  email: z.string().email().nullable(),
+  email: z.email().nullable(),
   hours: z.array(z.object({ days: Localized, time: z.string() })).nullable(),
-  mapUrl: z.string().url().nullable(),
+  mapUrl: z.url().nullable(),
 });
 
 export const Locations = z.array(Location);
@@ -43,11 +43,11 @@ export const Locations = z.array(Location);
 export const Site = z.object({
   name: z.string(),
   tagline: z.string(),
-  url: z.string().url(),
+  url: z.url(),
   indexable: z.boolean(),
-  email: z.string().email().nullable(),
+  email: z.email().nullable(),
   phone: z.string().nullable(),
-  social: z.array(z.object({ label: z.string(), url: z.string().url() })),
+  social: z.array(z.object({ label: z.string(), url: z.url() })),
   operator: z.object({
     company: z.string().nullable(),
     representative: z.string().nullable(),

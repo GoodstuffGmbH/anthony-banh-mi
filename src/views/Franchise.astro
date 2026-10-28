@@ -1,0 +1,32 @@
+---
+import TextPage from './TextPage.astro';
+import Button from '../components/Button.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { site } from '../data';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<TextPage {lang} routeKey="franchise" title={t.franchise.title} lead={t.franchise.lead} description={t.franchise.lead}>
+  <h2>{t.franchise.concept}</h2>
+  <Placeholder block text="Franchise-Konzept: Standortprofil, Leistungen der Zentrale, Investitionsrahmen" />
+
+  <h2>{t.franchise.requirements}</h2>
+  <Placeholder block text="Anforderungen an Partner (Erfahrung, Kapital, Fläche)" />
+
+  <h2>{t.franchise.contact}</h2>
+  {
+    site.email ? (
+      <Button href={`mailto:${site.email}?subject=Franchise`}>{t.contact.write}</Button>
+    ) : (
+      <Placeholder block text="E-Mail-Adresse für Franchise-Anfragen" />
+    )
+  }
+</TextPage>

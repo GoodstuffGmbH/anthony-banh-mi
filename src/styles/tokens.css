@@ -1,0 +1,68 @@
+/* Design-Tokens laut DESIGN.md. Komponenten nutzen nur die semantische Ebene. */
+:root {
+  /* Primitives */
+  --green-950: #0b2016;
+  --green-900: #12301f;
+  --green-700: #2d4a38;
+  --gold-400: #d5b47e;
+  --gold-500: #c9a46a;
+  --gold-700: #8a5f2a;
+  --cream-50: #fbf6ee;
+  --cream-100: #f3ece2;
+  --cream-200: #e7dbcb;
+  --wood-800: #3c281b;
+  --ink-900: #1d1b16;
+  --ink-600: #5c574d;
+
+  /* Semantic */
+  --color-bg: var(--cream-50);
+  --color-surface: var(--cream-100);
+  --color-surface-strong: var(--cream-200);
+  --color-inverse: var(--green-950);
+  --color-inverse-hover: var(--green-700);
+  --color-text: var(--ink-900);
+  --color-text-muted: var(--ink-600);
+  --color-heading: var(--green-900);
+  --color-on-inverse: var(--cream-50);
+  --color-accent: var(--gold-500);
+  --color-accent-hover: var(--gold-400);
+  --color-accent-text: var(--gold-700);
+  --color-accent-on-inverse: var(--gold-500);
+  --color-focus: var(--gold-700);
+  --color-focus-on-inverse: var(--gold-400);
+  --color-wood: var(--wood-800);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-text: 'Jost Variable', 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --fs-display: clamp(2.5rem, 1.6rem + 3.6vw, 4rem);
+  --fs-h1: clamp(2.25rem, 1.8rem + 1.8vw, 3rem);
+  --fs-h2: clamp(1.75rem, 1.45rem + 1.2vw, 2.25rem);
+  --fs-h3: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.8125rem;
+  --tracking-label: 0.14em;
+  --tracking-eyebrow: 0.2em;
+
+  /* Spacing (8-px-Raster) */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6rem;
+
+  /* Layout */
+  --content-max: 75rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+
+  /* Depth */
+  --shadow-1: 0 1px 2px rgb(11 32 22 / 0.08);
+  --shadow-2: 0 12px 32px rgb(11 32 22 / 0.18);
+  --scrim: linear-gradient(to top, rgb(11 32 22 / 0.85), transparent 60%);
+
+  --header-height: 5.5rem;
+}

@@ -1,0 +1,34 @@
+---
+import TextPage from './TextPage.astro';
+import Button from '../components/Button.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { site } from '../data';
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<TextPage {lang} routeKey="contact" title={t.contact.title} lead={t.contact.lead} description={t.contact.lead}>
+  <h2>{t.locations.email}</h2>
+  {site.email ? <Button href={`mailto:${site.email}`}>{site.email}</Button> : <Placeholder block text="E-Mail-Adresse" />}
+
+  <h2>{t.locations.phone}</h2>
+  {
+    site.phone ? (
+      <Button href={`tel:${site.phone.replace(/\s/g, '')}`} variant="link">
+        {site.phone}
+      </Button>
+    ) : (
+      <Placeholder block text="Telefonnummer" />
+    )
+  }
+
+  <h2>{t.locations.title}</h2>
+  <p><a href={href('locations', lang)}>{t.nav.locationsAll}</a></p>
+</TextPage>
