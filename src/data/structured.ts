@@ -1,4 +1,5 @@
 import { locations, menu, site } from './index';
+import type { MenuItemT } from './schema';
 import { routes, type Lang, type RouteKey } from '../i18n/routes';
 
 // Schema.org nur mit belegten Feldern. Was in den Daten null ist, fehlt hier.
@@ -30,6 +31,22 @@ export function restaurant(lang: Lang, imageUrl?: string) {
   };
 }
 
+const menuItem = (lang: Lang) => (i: MenuItemT) => ({
+  '@type': 'MenuItem',
+  name: i.name[lang],
+  ...(i.description && { description: i.description[lang] }),
+  ...(i.prices && {
+    offers: i.prices.map((p) => ({
+      '@type': 'Offer',
+      price: p.amount.toFixed(2),
+      priceCurrency: menu.currency,
+      ...(p.volume && { eligibleQuantity: { '@type': 'QuantitativeValue', value: p.volume, unitCode: 'LTR' } }),
+    })),
+  }),
+  ...(i.tags.includes('vegan') && { suitableForDiet: 'https://schema.org/VeganDiet' }),
+  ...(i.tags.includes('vegetarisch') && { suitableForDiet: 'https://schema.org/VegetarianDiet' }),
+});
+
 export function menuSchema(lang: Lang) {
   return {
     '@type': 'Menu',
@@ -37,19 +54,18 @@ export function menuSchema(lang: Lang) {
     url: abs(routes.menu[lang]),
     inLanguage: lang,
     hasMenuSection: menu.categories
-      .filter((c) => c.items.length)
+      .filter((c) => c.items.length || c.groups.length)
       .map((c) => ({
         '@type': 'MenuSection',
         name: c.name[lang],
-        hasMenuItem: c.items.map((i) => ({
-          '@type': 'MenuItem',
-          name: i.name[lang],
-          ...(i.description && { description: i.description[lang] }),
-          ...(i.price && {
-            offers: { '@type': 'Offer', price: i.price.toFixed(2), priceCurrency: menu.currency },
-          }),
-          ...(i.tags.includes('vegan') && { suitableForDiet: 'https://schema.org/VeganDiet' }),
-        })),
+        ...(c.items.length && { hasMenuItem: c.items.map(menuItem(lang)) }),
+        ...(c.groups.length && {
+          hasMenuSection: c.groups.map((g) => ({
+            '@type': 'MenuSection',
+            name: g.name[lang],
+            hasMenuItem: g.items.map(menuItem(lang)),
+          })),
+        }),
       })),
   };
 }

@@ -103,6 +103,8 @@ const de = {
     priceNote: 'Alle Preise in Euro inkl. MwSt.',
     allergens: 'Allergene und Zusatzstoffe',
     allergensNone: 'keine kennzeichnungspflichtigen',
+    extras: 'Aufpreis',
+    tags: { klassisch: 'Klassisch', vegan: 'Vegan', vegetarisch: 'Vegetarisch', suess: 'Süß', scharf: 'Scharf' },
   },
   locations: {
     title: 'Standorte',
@@ -260,6 +262,8 @@ const en: Dict = {
     priceNote: 'All prices in euros incl. VAT.',
     allergens: 'Allergens and additives',
     allergensNone: 'none requiring declaration',
+    extras: 'Extra charge',
+    tags: { klassisch: 'Classic', vegan: 'Vegan', vegetarisch: 'Vegetarian', suess: 'Sweet', scharf: 'Spicy' },
   },
   locations: {
     title: 'Locations',

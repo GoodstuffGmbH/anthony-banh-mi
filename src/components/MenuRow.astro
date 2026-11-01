@@ -1,0 +1,53 @@
+---
+import Prices from './Prices.astro';
+import Tags from './Tags.astro';
+import type { MenuItemT } from '../data/schema';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+// Kompakte Zeile für Getränke: ohne Foto, Name links, Größen und Preise rechts.
+interface Props {
+  item: MenuItemT;
+  lang: Lang;
+}
+
+const { item, lang } = Astro.props;
+const t = useT(lang);
+---
+
+<li class="row">
+  <div class="text">
+    <span class="name">{item.name[lang]}</span>
+    {item.description && <span class="description">{item.description[lang]}</span>}
+    <Tags tags={item.tags} {lang} />
+    {
+      item.allergens && (
+        <span class="description">
+          {t.menu.allergens}: {item.allergens.length ? item.allergens.join(', ') : t.menu.allergensNone}
+        </span>
+      )
+    }
+  </div>
+  <Prices prices={item.prices} {lang} />
+</li>
+
+<style>
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+    padding-block: var(--space-xs);
+    border-bottom: 1px solid var(--color-surface-strong);
+  }
+
+  .text {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .description {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+</style>

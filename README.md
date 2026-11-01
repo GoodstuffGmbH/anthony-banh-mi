@@ -17,7 +17,7 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 
 ## Inhalte pflegen
 
-- Speisekarte: `src/data/menu.json` (Preis `null` = Platzhalter)
+- Speisekarte: `src/data/menu.json`. Quelle sind die Karten in `docs/quellen/` (01.11.2026). `prices: null` = Platzhalter; `volume` in Litern; Getränke in `groups`; Allergene je Gericht nur, wenn eine Liste vorliegt (sonst gilt `allergenInfo`)
 - Standorte: `src/data/locations.json`
 - Kontakt, Impressum, Indexierung: `src/data/site.json` (`indexable` erst zum Launch auf `true`)
 - Texte: `src/i18n/`
@@ -28,7 +28,10 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 
 ## Offene Punkte vor Launch (RÜCKFRAGE)
 
-1. Speisekarte mit Preisen, Beschreibungen, Allergenen; Bestätigung der Bánh-mì-Sorten (Hähnchen, Schwein, Ei, Tofu)
+1. Speisekarte: Bánh mì und Getränke sind übernommen (Karten vom 01.11.2026). Offen sind Frühstück sowie Kuchen & Desserts. Außerdem zu bestätigen:
+   - Allergene pro Gericht online zeigen oder nur „Allergenliste auf Anfrage“ (wie auf der Karte)? Rechtlich prüfen lassen.
+   - Schreibweisen: „Bánh Mì Sữa“ (Karte: „SƯA“), „Double Espresso“ und „Latte Macchiato“ (Karte: „Expresso“, „Macciato“)
+   - Deutsche Untertitel der Getränke sind übersetzt (die Karte ist englisch) und brauchen eine redaktionelle Prüfung
 2. Standorte, Öffnungszeiten, Telefon, E-Mail
 3. Impressumsdaten; Impressum und Datenschutz rechtlich prüfen lassen
 4. Logo als SVG, Zustimmung zur Porträtnutzung

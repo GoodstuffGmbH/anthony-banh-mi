@@ -22,23 +22,43 @@ test('Speisekarte hat die fünf Kategorien aus dem Entwurf', () => {
   assert.deepEqual(ids, ['kaffee-getraenke', 'fruehstueck', 'kuchen-desserts', 'snacks-lunch', 'vegan-vegetarisch']);
 });
 
-test('Bánh mì mit Tofu, Schwein, Ei und Hähnchen sind enthalten', () => {
-  const items = Menu.parse(menu).categories.flatMap((c) => c.items.map((i) => i.id));
-  for (const id of ['banh-mi-tofu', 'banh-mi-schwein', 'banh-mi-ei', 'banh-mi-haehnchen']) {
-    assert.ok(items.includes(id), `${id} fehlt`);
+const allItems = (m) => m.categories.flatMap((c) => [...c.items, ...c.groups.flatMap((g) => g.items)]);
+
+test('Alle fünf Bánh mì der Karte haben Preis und Beschreibung', () => {
+  const items = Object.fromEntries(allItems(Menu.parse(menu)).map((i) => [i.id, i]));
+  const card = { 'banh-mi-schwein': 7.9, 'banh-mi-haehnchen': 7.5, 'banh-mi-tofu': 6.5, 'banh-mi-ei': 6.9, 'banh-mi-sua': 3.9 };
+  for (const [id, amount] of Object.entries(card)) {
+    assert.ok(items[id], `${id} fehlt`);
+    assert.deepEqual(items[id].prices, [{ amount }], id);
+    assert.ok(items[id].description, `${id} ohne Beschreibung`);
   }
 });
 
-test('IDs sind eindeutig', () => {
+test('IDs sind eindeutig (Kategorien, Gruppen, Positionen)', () => {
   const parsed = Menu.parse(menu);
-  const ids = [...parsed.categories.map((c) => c.id), ...parsed.categories.flatMap((c) => c.items.map((i) => i.id))];
+  const ids = [
+    ...parsed.categories.map((c) => c.id),
+    ...parsed.categories.flatMap((c) => c.groups.map((g) => g.id)),
+    ...allItems(parsed).map((i) => i.id),
+  ];
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test('Schema lehnt negative Preise ab', () => {
-  const bad = structuredClone(menu);
-  bad.categories[3].items[0].price = -1;
-  assert.throws(() => Menu.parse(bad));
+test('Schema lehnt negative Preise und leere Preislisten ab', () => {
+  const negative = structuredClone(menu);
+  negative.categories[3].items[0].prices[0].amount = -1;
+  assert.throws(() => Menu.parse(negative));
+  const empty = structuredClone(menu);
+  empty.categories[3].items[0].prices = [];
+  assert.throws(() => Menu.parse(empty));
+});
+
+test('Getränke mit Größe: Volumen in Litern, mehrere Größen möglich', () => {
+  const wine = allItems(Menu.parse(menu)).find((i) => i.id === 'zibomare-weiss');
+  assert.deepEqual(wine.prices, [
+    { amount: 6.9, volume: 0.2 },
+    { amount: 19.9, volume: 0.75 },
+  ]);
 });
 
 test('Schema verlangt DE- und EN-Namen', () => {

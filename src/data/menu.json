@@ -1,5 +1,9 @@
 {
   "currency": "EUR",
+  "allergenInfo": {
+    "de": "Auf Anfrage erhalten Sie eine Allergenliste.",
+    "en": "An allergen list is available on request."
+  },
   "categories": [
     {
       "id": "kaffee-getraenke",
@@ -8,7 +12,854 @@
         "en": "Coffee & Drinks"
       },
       "image": null,
-      "items": []
+      "note": {
+        "de": "Wir verwenden vietnamesische Kaffeebohnen, frisch geröstet in Deutschland.",
+        "en": "We use Vietnamese coffee beans, freshly roasted in Germany."
+      },
+      "items": [],
+      "groups": [
+        {
+          "id": "klassischer-kaffee",
+          "name": {
+            "de": "Klassischer Kaffee",
+            "en": "Classic coffee"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "espresso",
+              "name": {
+                "de": "Espresso",
+                "en": "Espresso"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 2.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "double-espresso",
+              "name": {
+                "de": "Double Espresso",
+                "en": "Double Espresso"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "americano",
+              "name": {
+                "de": "Americano",
+                "en": "Americano"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "iced-americano",
+              "name": {
+                "de": "Iced Americano",
+                "en": "Iced Americano"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.3
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "cappuccino",
+              "name": {
+                "de": "Cappuccino",
+                "en": "Cappuccino"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "flat-white",
+              "name": {
+                "de": "Flat White",
+                "en": "Flat White"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 4.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "latte-macchiato",
+              "name": {
+                "de": "Latte Macchiato",
+                "en": "Latte Macchiato"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "iced-latte",
+              "name": {
+                "de": "Iced Latte",
+                "en": "Iced Latte"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 4.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "cold-brew",
+              "name": {
+                "de": "Cold Brew",
+                "en": "Cold Brew"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "pure-brew",
+              "name": {
+                "de": "Pure Brew",
+                "en": "Pure Brew"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": [
+            {
+              "name": {
+                "de": "Hafer- oder Kokosmilch",
+                "en": "Oat or coconut milk"
+              },
+              "amount": 0.5
+            },
+            {
+              "name": {
+                "de": "Entkoffeiniert",
+                "en": "Decaf"
+              },
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "id": "vietnamesischer-kaffee",
+          "name": {
+            "de": "Vietnamesischer Kaffee",
+            "en": "Vietnamese coffee"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "ca-phe-muoi",
+              "name": {
+                "de": "Cà Phê Muối",
+                "en": "Cà Phê Muối"
+              },
+              "description": {
+                "de": "Kaffee mit gesalzener Sahnecreme",
+                "en": "Salted cream coffee"
+              },
+              "prices": [
+                {
+                  "amount": 4.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "ca-phe-cot-dua",
+              "name": {
+                "de": "Cà Phê Cốt Dừa",
+                "en": "Cà Phê Cốt Dừa"
+              },
+              "description": {
+                "de": "Eiskaffee mit Kokos",
+                "en": "Iced coconut coffee"
+              },
+              "prices": [
+                {
+                  "amount": 5.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "egg-coffee-hot",
+              "name": {
+                "de": "Egg Coffee heiß",
+                "en": "Egg Coffee Hot"
+              },
+              "description": {
+                "de": "Doppelter Espresso mit Eiercreme",
+                "en": "Double espresso with egg cream"
+              },
+              "prices": [
+                {
+                  "amount": 5.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "egg-coffee-iced",
+              "name": {
+                "de": "Egg Coffee auf Eis",
+                "en": "Egg Coffee Iced"
+              },
+              "description": {
+                "de": "Doppelter Espresso mit Eiercreme",
+                "en": "Double espresso with egg cream"
+              },
+              "prices": [
+                {
+                  "amount": 5.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "ca-phe-phin",
+              "name": {
+                "de": "Cà Phê Phin",
+                "en": "Cà Phê Phin"
+              },
+              "description": {
+                "de": "Traditionell",
+                "en": "Traditional"
+              },
+              "prices": [
+                {
+                  "amount": 3.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "ca-phe-sua-da",
+              "name": {
+                "de": "Cà Phê Sữa Đá",
+                "en": "Cà Phê Sữa Đá"
+              },
+              "description": {
+                "de": "Süßer Eiskaffee",
+                "en": "Iced sweet coffee"
+              },
+              "prices": [
+                {
+                  "amount": 4.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "matcha",
+          "name": {
+            "de": "Matcha",
+            "en": "Matcha"
+          },
+          "note": {
+            "de": "High Ceremonial Grade Matcha von Mori Kyoto",
+            "en": "High ceremonial grade matcha from Mori Kyoto"
+          },
+          "items": [
+            {
+              "id": "matcha-special",
+              "name": {
+                "de": "Matcha Special",
+                "en": "Matcha Special"
+              },
+              "description": {
+                "de": "Saisonal",
+                "en": "Seasonal"
+              },
+              "prices": [
+                {
+                  "amount": 6.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "matcha-latte",
+              "name": {
+                "de": "Matcha Latte",
+                "en": "Matcha Latte"
+              },
+              "description": {
+                "de": "Heiß oder auf Eis",
+                "en": "Hot or iced"
+              },
+              "prices": [
+                {
+                  "amount": 5.0
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "mango-matcha",
+              "name": {
+                "de": "Mango Matcha",
+                "en": "Mango Matcha"
+              },
+              "description": {
+                "de": "Süß und fruchtig",
+                "en": "Sweet and fruity"
+              },
+              "prices": [
+                {
+                  "amount": 5.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "strawberry-matcha",
+              "name": {
+                "de": "Strawberry Matcha",
+                "en": "Strawberry Matcha"
+              },
+              "description": {
+                "de": "Süß und fruchtig",
+                "en": "Sweet and fruity"
+              },
+              "prices": [
+                {
+                  "amount": 5.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "coconut-water-matcha",
+              "name": {
+                "de": "Coconut Water Matcha",
+                "en": "Coconut Water Matcha"
+              },
+              "description": {
+                "de": "Natürlich und erfrischend",
+                "en": "Natural and refreshing"
+              },
+              "prices": [
+                {
+                  "amount": 5.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "hausgemachte-getraenke",
+          "name": {
+            "de": "Hausgemachte Getränke",
+            "en": "Homemade drinks"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "lychee-yuzu-spritz",
+              "name": {
+                "de": "Lychee x Yuzu Spritz",
+                "en": "Lychee x Yuzu Spritz"
+              },
+              "description": {
+                "de": "Alkoholfrei",
+                "en": "Alcohol-free"
+              },
+              "prices": [
+                {
+                  "amount": 4.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "tra-chanh-da",
+              "name": {
+                "de": "Trà Chanh Đá",
+                "en": "Trà Chanh Đá"
+              },
+              "description": {
+                "de": "Eistee mit Jasmin und Limette",
+                "en": "Jasmine lime iced tea"
+              },
+              "prices": [
+                {
+                  "amount": 3.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "tra-dao",
+              "name": {
+                "de": "Trà Đào",
+                "en": "Trà Đào"
+              },
+              "description": {
+                "de": "Eistee mit Oolong und Pfirsich",
+                "en": "Oolong peach iced tea"
+              },
+              "prices": [
+                {
+                  "amount": 3.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "softdrinks-wasser",
+          "name": {
+            "de": "Softdrinks & Wasser",
+            "en": "Soft drinks & water"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "coca-cola",
+              "name": {
+                "de": "Coca-Cola",
+                "en": "Coca-Cola"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.2,
+                  "volume": 0.33
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "coca-cola-zero",
+              "name": {
+                "de": "Coca-Cola Zero",
+                "en": "Coca-Cola Zero"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.2,
+                  "volume": 0.33
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "purezza-sparkling",
+              "name": {
+                "de": "Purezza Wasser sprudelnd",
+                "en": "Purezza sparkling water"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 2.2,
+                  "volume": 0.33
+                },
+                {
+                  "amount": 4.3,
+                  "volume": 0.75
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "frische-saefte",
+          "name": {
+            "de": "Frische Säfte",
+            "en": "Fresh juice"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "detox-drink",
+              "name": {
+                "de": "Detox Drink",
+                "en": "Detox Drink"
+              },
+              "description": {
+                "de": "Saisonal",
+                "en": "Seasonal"
+              },
+              "prices": [
+                {
+                  "amount": 4.5,
+                  "volume": 0.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "orangensaft",
+              "name": {
+                "de": "Orangensaft",
+                "en": "Orange juice"
+              },
+              "description": {
+                "de": "100 % natürlich",
+                "en": "100 % natural"
+              },
+              "prices": [
+                {
+                  "amount": 3.2,
+                  "volume": 0.2
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "bier",
+          "name": {
+            "de": "Bier",
+            "en": "Beer"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "oberdorfer-helles",
+              "name": {
+                "de": "Oberdorfer Helles",
+                "en": "Oberdorfer Helles"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 3.5,
+                  "volume": 0.33
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "buble-edelweissbier",
+              "name": {
+                "de": "Büble Edelweissbier",
+                "en": "Büble Edelweissbier"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 4.5,
+                  "volume": 0.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "buble-edelweissbier-alkoholfrei",
+              "name": {
+                "de": "Büble Edelweissbier 0,0 %",
+                "en": "Büble Edelweissbier 0.0 %"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 4.5,
+                  "volume": 0.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "spritz",
+          "name": {
+            "de": "Spritz",
+            "en": "Spritz"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "aperol-spritz",
+              "name": {
+                "de": "Aperol Spritz",
+                "en": "Aperol Spritz"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 6.5
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "yuzu-spritz",
+              "name": {
+                "de": "Yuzu Spritz",
+                "en": "Yuzu Spritz"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 6.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "lychee-spritz",
+              "name": {
+                "de": "Lychee Spritz",
+                "en": "Lychee Spritz"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 6.9
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "prosecco",
+          "name": {
+            "de": "Prosecco",
+            "en": "Prosecco"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "etichetta-nera",
+              "name": {
+                "de": "Etichetta Nera Spumante Millesimato",
+                "en": "Etichetta Nera Spumante Millesimato"
+              },
+              "description": null,
+              "prices": [
+                {
+                  "amount": 4.9,
+                  "volume": 0.1
+                },
+                {
+                  "amount": 21.9,
+                  "volume": 0.75
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        },
+        {
+          "id": "wein",
+          "name": {
+            "de": "Wein",
+            "en": "Wine"
+          },
+          "note": null,
+          "items": [
+            {
+              "id": "zibomare-weiss",
+              "name": {
+                "de": "Zibomare",
+                "en": "Zibomare"
+              },
+              "description": {
+                "de": "Weißwein",
+                "en": "White wine"
+              },
+              "prices": [
+                {
+                  "amount": 6.9,
+                  "volume": 0.2
+                },
+                {
+                  "amount": 19.9,
+                  "volume": 0.75
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "le-ciel-de-saint-azur",
+              "name": {
+                "de": "Le Ciel de Saint Azur",
+                "en": "Le Ciel de Saint Azur"
+              },
+              "description": {
+                "de": "Rosé",
+                "en": "Rosé"
+              },
+              "prices": [
+                {
+                  "amount": 6.9,
+                  "volume": 0.2
+                },
+                {
+                  "amount": 19.9,
+                  "volume": 0.75
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            },
+            {
+              "id": "montes-cabernet-sauvignon",
+              "name": {
+                "de": "Montes Cabernet Sauvignon",
+                "en": "Montes Cabernet Sauvignon"
+              },
+              "description": {
+                "de": "Rotwein",
+                "en": "Red wine"
+              },
+              "prices": [
+                {
+                  "amount": 8.9,
+                  "volume": 0.2
+                },
+                {
+                  "amount": 26.9,
+                  "volume": 0.75
+                }
+              ],
+              "image": null,
+              "allergens": null,
+              "tags": []
+            }
+          ],
+          "extras": []
+        }
+      ]
     },
     {
       "id": "fruehstueck",
@@ -17,7 +868,9 @@
         "en": "Breakfast"
       },
       "image": "banhmi-ei",
-      "items": []
+      "note": null,
+      "items": [],
+      "groups": []
     },
     {
       "id": "kuchen-desserts",
@@ -26,7 +879,9 @@
         "en": "Cakes & Desserts"
       },
       "image": null,
-      "items": []
+      "note": null,
+      "items": [],
+      "groups": []
     },
     {
       "id": "snacks-lunch",
@@ -35,44 +890,70 @@
         "en": "Snacks / Lunch"
       },
       "image": "banhmi-schwein",
+      "note": {
+        "de": "Basis bei jedem Bánh Mì: eingelegte Karotten, Gurken, eingelegter Rettich, Koriander, Jasmin-Zitronengras-Soße und scharfe Tamarind-Soße. Serviert auf speziell für uns gebackenem Elias Boulanger Baguette.",
+        "en": "Every bánh mì comes with: pickled carrots, cucumber, pickled radish, coriander, jasmine lemongrass sauce and spicy tamarind sauce. Served on a baguette baked especially for us by Elias Boulanger."
+      },
       "items": [
+        {
+          "id": "banh-mi-schwein",
+          "name": {
+            "de": "Bánh Mì Thịt Kho",
+            "en": "Bánh Mì Thịt Kho"
+          },
+          "description": {
+            "de": "Geschmorter Schweinebauch, vietnamesische Leberwurst nach Mamas Rezept",
+            "en": "Braised pork belly and Vietnamese liver pâté made to Mum's recipe"
+          },
+          "prices": [
+            {
+              "amount": 7.9
+            }
+          ],
+          "image": "banhmi-schwein",
+          "allergens": null,
+          "tags": ["klassisch"]
+        },
         {
           "id": "banh-mi-haehnchen",
           "name": {
-            "de": "Bánh mì Hähnchen",
-            "en": "Bánh mì Chicken"
+            "de": "Bánh Mì Gà",
+            "en": "Bánh Mì Gà"
           },
-          "description": null,
-          "price": null,
+          "description": {
+            "de": "Saftig marinierte Hähnchenoberkeule",
+            "en": "Juicy marinated chicken thigh"
+          },
+          "prices": [
+            {
+              "amount": 7.5
+            }
+          ],
           "image": "banhmi-haehnchen",
           "allergens": null,
           "tags": []
         },
         {
-          "id": "banh-mi-schwein",
+          "id": "banh-mi-sua",
           "name": {
-            "de": "Bánh mì Schwein",
-            "en": "Bánh mì Pork"
+            "de": "Bánh Mì Sữa",
+            "en": "Bánh Mì Sữa"
           },
-          "description": null,
-          "price": null,
-          "image": "banhmi-schwein",
-          "allergens": null,
-          "tags": []
-        },
-        {
-          "id": "banh-mi-ei",
-          "name": {
-            "de": "Bánh mì Ei",
-            "en": "Bánh mì Egg"
+          "description": {
+            "de": "Mit gezuckerter Kondensmilch, ohne Basis",
+            "en": "With sweetened condensed milk, without the base"
           },
-          "description": null,
-          "price": null,
-          "image": "banhmi-ei",
+          "prices": [
+            {
+              "amount": 3.9
+            }
+          ],
+          "image": null,
           "allergens": null,
-          "tags": []
+          "tags": ["suess"]
         }
-      ]
+      ],
+      "groups": []
     },
     {
       "id": "vegan-vegetarisch",
@@ -81,20 +962,51 @@
         "en": "Vegan / Vegetarian"
       },
       "image": "banhmi-tofu",
+      "note": {
+        "de": "Basis bei jedem Bánh Mì: eingelegte Karotten, Gurken, eingelegter Rettich, Koriander, Jasmin-Zitronengras-Soße und scharfe Tamarind-Soße. Serviert auf speziell für uns gebackenem Elias Boulanger Baguette.",
+        "en": "Every bánh mì comes with: pickled carrots, cucumber, pickled radish, coriander, jasmine lemongrass sauce and spicy tamarind sauce. Served on a baguette baked especially for us by Elias Boulanger."
+      },
       "items": [
         {
           "id": "banh-mi-tofu",
           "name": {
-            "de": "Bánh mì Tofu",
-            "en": "Bánh mì Tofu"
+            "de": "Bánh Mì Đậu Phụ",
+            "en": "Bánh Mì Đậu Phụ"
           },
-          "description": null,
-          "price": null,
+          "description": {
+            "de": "Eingelegter gebratener Tofu",
+            "en": "Marinated fried tofu"
+          },
+          "prices": [
+            {
+              "amount": 6.5
+            }
+          ],
           "image": "banhmi-tofu",
           "allergens": null,
-          "tags": []
+          "tags": ["vegan"]
+        },
+        {
+          "id": "banh-mi-ei",
+          "name": {
+            "de": "Bánh Mì Trứng",
+            "en": "Bánh Mì Trứng"
+          },
+          "description": {
+            "de": "Würzig frisch gebratenes Omelette",
+            "en": "Well-seasoned, freshly fried omelette"
+          },
+          "prices": [
+            {
+              "amount": 6.9
+            }
+          ],
+          "image": "banhmi-ei",
+          "allergens": null,
+          "tags": ["vegetarisch"]
         }
-      ]
+      ],
+      "groups": []
     }
   ]
 }

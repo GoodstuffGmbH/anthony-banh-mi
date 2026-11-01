@@ -7,26 +7,46 @@ const Slug = z.string().regex(/^[a-z0-9-]+$/);
 // Externe Links nur https: kein javascript:/data: in href.
 const HttpsUrl = z.url({ protocol: /^https$/ });
 
+// Preis je Größe. volume in Litern, nur bei Getränken mit Größenangabe.
+const Price = z.object({ amount: z.number().positive(), volume: z.number().positive().optional() });
+
 export const MenuItem = z.object({
   id: Slug,
   name: Localized,
+  // null = keine Beschreibung (z. B. Espresso)
   description: Localized.nullable(),
-  price: z.number().positive().nullable(),
+  // null = Preis noch nicht geliefert
+  prices: z.array(Price).min(1).nullable(),
   image: Slug.nullable(),
-  // null = noch nicht geliefert, [] = keine kennzeichnungspflichtigen Allergene
+  // null = keine Angabe je Gericht (Hinweis menu.allergenInfo gilt), [] = keine kennzeichnungspflichtigen
   allergens: z.array(z.string().min(1)).nullable(),
-  tags: z.array(z.enum(['vegan', 'vegetarisch', 'scharf'])),
+  tags: z.array(z.enum(['klassisch', 'vegan', 'vegetarisch', 'suess', 'scharf'])),
+});
+
+// Aufpreise wie Hafermilch, gelten für die ganze Gruppe.
+const Extra = z.object({ name: Localized, amount: z.number().positive() });
+
+export const MenuGroup = z.object({
+  id: Slug,
+  name: Localized,
+  note: Localized.nullable(),
+  items: z.array(MenuItem).min(1),
+  extras: z.array(Extra),
 });
 
 export const MenuCategory = z.object({
   id: Slug,
   name: Localized,
   image: Slug.nullable(),
+  note: Localized.nullable(),
   items: z.array(MenuItem),
+  groups: z.array(MenuGroup),
 });
 
 export const Menu = z.object({
   currency: z.literal('EUR'),
+  // null = Hinweis zu Allergenen fehlt noch
+  allergenInfo: Localized.nullable(),
   categories: z.array(MenuCategory).min(1),
 });
 
@@ -65,6 +85,7 @@ export const Site = z.object({
 
 export type MenuT = z.infer<typeof Menu>;
 export type MenuCategoryT = z.infer<typeof MenuCategory>;
+export type MenuGroupT = z.infer<typeof MenuGroup>;
 export type MenuItemT = z.infer<typeof MenuItem>;
 export type LocationT = z.infer<typeof Location>;
 export type SiteT = z.infer<typeof Site>;
