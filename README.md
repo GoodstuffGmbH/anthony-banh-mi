@@ -29,11 +29,10 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 ## Offene Punkte vor Launch (RÜCKFRAGE)
 
 1. Speisekarte: Bánh mì und Getränke sind übernommen (Karten vom 01.11.2026). Offen sind Frühstück sowie Kuchen & Desserts. Außerdem zu bestätigen:
-   - Allergene pro Gericht online zeigen oder nur „Allergenliste auf Anfrage“ (wie auf der Karte)? Rechtlich prüfen lassen.
    - Schreibweisen: „Bánh Mì Sữa“ (Karte: „SƯA“), „Double Espresso“ und „Latte Macchiato“ (Karte: „Expresso“, „Macciato“)
    - Deutsche Untertitel der Getränke sind übersetzt (die Karte ist englisch) und brauchen eine redaktionelle Prüfung
 2. Standorte, Öffnungszeiten, Telefon, E-Mail
-3. Impressumsdaten; Impressum und Datenschutz rechtlich prüfen lassen
+3. Impressumsdaten; Impressum, Datenschutz und Allergenhinweis rechtlich prüfen lassen. Entschieden am 01.11.2026 (office@thats-coffee.de, Name in Akte nachtragen): Allergene wie auf der Karte nur als „Allergenliste auf Anfrage“, nicht je Gericht.
 4. Logo als SVG, Zustimmung zur Porträtnutzung
 5. Echte Produktfotos (aktuelle wirken KI-generiert)
 6. Hauptdomain (`anthonybanhmi.com`, `.de` oder `anthony-banhmi.de`) und Hosting
