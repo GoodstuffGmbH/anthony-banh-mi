@@ -31,6 +31,7 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 1. Speisekarte: Bánh mì und Getränke sind übernommen (Karten vom 01.11.2026). Offen sind Frühstück sowie Kuchen & Desserts. Außerdem zu bestätigen:
    - Schreibweisen: „Bánh Mì Sữa“ (Karte: „SƯA“), „Double Espresso“ und „Latte Macchiato“ (Karte: „Expresso“, „Macciato“)
    - Deutsche Untertitel der Getränke sind übersetzt (die Karte ist englisch) und brauchen eine redaktionelle Prüfung
+   - Konzepttext auf „Über uns“ ist ein Entwurf aus den Angaben der Karten (Bäcker, Bohnen, Matcha, Mamas Rezept, hausgemachte Getränke) und braucht eine redaktionelle Prüfung
 2. Standorte, Öffnungszeiten, Telefon, E-Mail
 3. Impressumsdaten; Impressum, Datenschutz und Allergenhinweis rechtlich prüfen lassen. Entschieden am 01.11.2026 (office@thats-coffee.de, Name in Akte nachtragen): Allergene wie auf der Karte nur als „Allergenliste auf Anfrage“, nicht je Gericht.
 4. Logo als SVG, Zustimmung zur Porträtnutzung
