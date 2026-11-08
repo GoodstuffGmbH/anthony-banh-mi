@@ -5,7 +5,7 @@ import MenuItem from '../components/MenuItem.astro';
 import MenuRow from '../components/MenuRow.astro';
 import Placeholder from '../components/Placeholder.astro';
 import RelatedLinks from '../components/RelatedLinks.astro';
-import { menu } from '../data';
+import { menu, visibleCategories } from '../data';
 import { breadcrumb, menuSchema } from '../data/structured';
 import { formatPrice } from '../lib/format';
 import type { Lang } from '../i18n/routes';
@@ -33,7 +33,7 @@ const t = useT(lang);
       <h2 id="kategorien-nav" class="visually-hidden">{t.home.categoriesTitle}</h2>
       <ul role="list">
         {
-          menu.categories.map((c) => (
+          visibleCategories.map((c) => (
             <li>
               <a class="label" href={`#${c.id}`}>
                 {c.name[lang]}
@@ -46,7 +46,7 @@ const t = useT(lang);
 
     <div class="categories">
       {
-        menu.categories.map((c) => (
+        visibleCategories.map((c) => (
           <section id={c.id} aria-labelledby={`${c.id}-titel`} class="category">
             <h2 id={`${c.id}-titel`}>{c.name[lang]}</h2>
             {c.note && <p class="category-note">{c.note[lang]}</p>}
@@ -83,9 +83,6 @@ const t = useT(lang);
                   </section>
                 ))}
               </div>
-            )}
-            {c.items.length === 0 && c.groups.length === 0 && (
-              <Placeholder block text={`${t.menu.emptyCategory}: ${c.name.de} (Name, Beschreibung, Preis)`} />
             )}
           </section>
         ))

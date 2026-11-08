@@ -10,9 +10,9 @@ const de = {
   },
   seo: {
     menu: {
-      title: 'Speisekarte: Bánh mì, Kaffee & Frühstück',
+      title: 'Speisekarte: Bánh mì, Kaffee & Getränke',
       description:
-        'Die Speisekarte von Anthony Bánh Mì: Bánh mì mit Hähnchen, Schwein, Ei oder Tofu, dazu Kaffee & Getränke, Frühstück, Kuchen und vegane Auswahl.',
+        'Die Speisekarte von Anthony Bánh Mì: Bánh mì mit Hähnchen, Schwein, Ei oder Tofu, dazu vietnamesischer Kaffee, Matcha, hausgemachte Eistees und vegane Auswahl.',
     },
     locations: {
       title: 'Standorte & Öffnungszeiten',
@@ -98,7 +98,6 @@ const de = {
     title: 'Speisekarte',
     lead: 'Bánh mì, Kaffee und mehr.',
     photoSoon: 'Foto folgt',
-    emptyCategory: 'Gerichte dieser Kategorie',
     price: 'Preis',
     priceNote: 'Alle Preise in Euro inkl. MwSt.',
     allergens: 'Allergene und Zusatzstoffe',
@@ -169,9 +168,9 @@ const en: Dict = {
   },
   seo: {
     menu: {
-      title: 'Menu: bánh mì, coffee & breakfast',
+      title: 'Menu: bánh mì, coffee & drinks',
       description:
-        'The Anthony Bánh Mì menu: bánh mì with chicken, pork, egg or tofu, plus coffee & drinks, breakfast, cakes and a vegan selection.',
+        'The Anthony Bánh Mì menu: bánh mì with chicken, pork, egg or tofu, plus Vietnamese coffee, matcha, homemade iced teas and a vegan selection.',
     },
     locations: {
       title: 'Locations & opening hours',
@@ -257,7 +256,6 @@ const en: Dict = {
     title: 'Menu',
     lead: 'Bánh mì, coffee and more.',
     photoSoon: 'Photo coming soon',
-    emptyCategory: 'Dishes in this category',
     price: 'Price',
     priceNote: 'All prices in euros incl. VAT.',
     allergens: 'Allergens and additives',

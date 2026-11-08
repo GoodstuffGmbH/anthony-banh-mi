@@ -9,6 +9,9 @@ export const menu = Menu.parse(menuJson);
 export const locations = Locations.parse(locationsJson);
 export const site = Site.parse(siteJson);
 
+// Kategorien ohne Gerichte bleiben ausgeblendet, bis die Karte sie füllt.
+export const visibleCategories = menu.categories.filter((c) => c.items.length || c.groups.length);
+
 const files = import.meta.glob<{ default: ImageMetadata }>('../assets/img/*.{jpg,png}', { eager: true });
 const images = Object.fromEntries(
   Object.entries(files).map(([path, mod]) => [path.split('/').pop()!.replace(/\.\w+$/, ''), mod.default]),

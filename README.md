@@ -17,7 +17,7 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 
 ## Inhalte pflegen
 
-- Speisekarte: `src/data/menu.json`. Quelle sind die Karten in `docs/quellen/` (01.11.2026). `prices: null` = Platzhalter; `volume` in Litern; Getränke in `groups`; Allergene je Gericht nur, wenn eine Liste vorliegt (sonst gilt `allergenInfo`)
+- Speisekarte: `src/data/menu.json`. Quelle sind die Karten in `docs/quellen/` (01.11.2026). `prices: null` = Platzhalter; `volume` in Litern; Getränke in `groups`; Allergene je Gericht nur, wenn eine Liste vorliegt (sonst gilt `allergenInfo`); Kategorien ohne Einträge werden nicht angezeigt
 - Standorte: `src/data/locations.json`
 - Kontakt, Impressum, Indexierung: `src/data/site.json` (`indexable` erst zum Launch auf `true`)
 - Texte: `src/i18n/`
@@ -28,7 +28,7 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 
 ## Offene Punkte vor Launch (RÜCKFRAGE)
 
-1. Speisekarte: Bánh mì und Getränke sind übernommen (Karten vom 01.11.2026). Offen sind Frühstück sowie Kuchen & Desserts. Außerdem zu bestätigen:
+1. Speisekarte: Bánh mì und Getränke sind übernommen (Karten vom 01.11.2026). Frühstück sowie Kuchen & Desserts sind ausgeblendet (entschieden am 08.11.2026), bis Gerichte vorliegen; sie erscheinen automatisch, sobald sie in `menu.json` Einträge haben. Außerdem zu bestätigen:
    - Schreibweisen: „Bánh Mì Sữa“ (Karte: „SƯA“), „Double Espresso“ und „Latte Macchiato“ (Karte: „Expresso“, „Macciato“)
    - Deutsche Untertitel der Getränke sind übersetzt (die Karte ist englisch) und brauchen eine redaktionelle Prüfung
    - Konzepttext auf „Über uns“ ist ein Entwurf aus den Angaben der Karten (Bäcker, Bohnen, Matcha, Mamas Rezept, hausgemachte Getränke) und braucht eine redaktionelle Prüfung

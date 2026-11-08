@@ -5,7 +5,7 @@ import Button from '../components/Button.astro';
 import CategoryTile from '../components/CategoryTile.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import { image, menu } from '../data';
+import { image, visibleCategories } from '../data';
 import { restaurant } from '../data/structured';
 import { href, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
@@ -71,7 +71,7 @@ const valueIcons: Record<keyof typeof t.home.values, IconName> = {
       <h2 id="kategorien" class="visually-hidden">{t.home.categoriesTitle}</h2>
       <ul class="tiles" role="list">
         {
-          menu.categories.map((c) => (
+          visibleCategories.map((c) => (
             <li>
               <CategoryTile
                 href={href('menu', lang, c.id)}

@@ -1,4 +1,4 @@
-import { locations, menu, site } from './index';
+import { locations, menu, site, visibleCategories } from './index';
 import type { MenuItemT } from './schema';
 import { routes, type Lang, type RouteKey } from '../i18n/routes';
 
@@ -53,20 +53,18 @@ export function menuSchema(lang: Lang) {
     name: `${site.name} – ${lang === 'de' ? 'Speisekarte' : 'Menu'}`,
     url: abs(routes.menu[lang]),
     inLanguage: lang,
-    hasMenuSection: menu.categories
-      .filter((c) => c.items.length || c.groups.length)
-      .map((c) => ({
-        '@type': 'MenuSection',
-        name: c.name[lang],
-        ...(c.items.length && { hasMenuItem: c.items.map(menuItem(lang)) }),
-        ...(c.groups.length && {
-          hasMenuSection: c.groups.map((g) => ({
-            '@type': 'MenuSection',
-            name: g.name[lang],
-            hasMenuItem: g.items.map(menuItem(lang)),
-          })),
-        }),
-      })),
+    hasMenuSection: visibleCategories.map((c) => ({
+      '@type': 'MenuSection',
+      name: c.name[lang],
+      ...(c.items.length && { hasMenuItem: c.items.map(menuItem(lang)) }),
+      ...(c.groups.length && {
+        hasMenuSection: c.groups.map((g) => ({
+          '@type': 'MenuSection',
+          name: g.name[lang],
+          hasMenuItem: g.items.map(menuItem(lang)),
+        })),
+      }),
+    })),
   };
 }
 
