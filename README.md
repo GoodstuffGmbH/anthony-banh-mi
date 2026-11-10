@@ -32,11 +32,11 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
    - Schreibweisen: „Bánh Mì Sữa“ (Karte: „SƯA“), „Double Espresso“ und „Latte Macchiato“ (Karte: „Expresso“, „Macciato“)
    - Deutsche Untertitel der Getränke sind übersetzt (die Karte ist englisch) und brauchen eine redaktionelle Prüfung
    - Konzepttext auf „Über uns“ ist ein Entwurf aus den Angaben der Karten (Bäcker, Bohnen, Matcha, Mamas Rezept, hausgemachte Getränke) und braucht eine redaktionelle Prüfung
-2. Standorte, Öffnungszeiten, Telefon, E-Mail
+2. Öffnungszeiten. Telefon, E-Mail und Adresse (Hoyerswerdaer Straße 26, 01099 Dresden) eingetragen am 10.11.2026; offen, ob Franchise- und Bewerbungsanfragen ebenfalls an contact@anthony-banhmi.de gehen
 3. Impressumsdaten; Impressum, Datenschutz und Allergenhinweis rechtlich prüfen lassen. Entschieden am 01.11.2026 (office@thats-coffee.de, Name in Akte nachtragen): Allergene wie auf der Karte nur als „Allergenliste auf Anfrage“, nicht je Gericht.
 4. Logo als SVG, Zustimmung zur Porträtnutzung
 5. Echte Produktfotos (aktuelle wirken KI-generiert)
-6. Hauptdomain (`anthonybanhmi.com`, `.de` oder `anthony-banhmi.de`) und Hosting
+6. Hauptdomain (`anthonybanhmi.com`, `.de` oder `anthony-banhmi.de`) und Hosting; die E-Mail-Adresse spricht für `anthony-banhmi.de`, `site.url` steht noch auf `anthonybanhmi.com`
 7. Bereich-ID für die GG-Vorgangsakte
 
 Prüfberichte: `docs/faktencheck-2026-10-28.md`. Barrierefreiheit: axe-core (WCAG 2.2 AA) 0 Verstöße auf 15 Seiten × 2 Viewports (28.10.2026).
