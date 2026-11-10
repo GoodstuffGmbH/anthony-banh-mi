@@ -6,6 +6,131 @@
   },
   "categories": [
     {
+      "id": "snacks-lunch",
+      "name": {
+        "de": "Snacks / Lunch",
+        "en": "Snacks / Lunch"
+      },
+      "image": "banhmi-schwein",
+      "note": {
+        "de": "Basis bei jedem Bánh Mì: eingelegte Karotten, Gurken, eingelegter Rettich, Koriander, Jasmin-Zitronengras-Soße und scharfe Tamarind-Soße. Serviert auf speziell für uns gebackenem Elias Boulanger Baguette.",
+        "en": "Every bánh mì comes with: pickled carrots, cucumber, pickled radish, coriander, jasmine lemongrass sauce and spicy tamarind sauce. Served on a baguette baked especially for us by Elias Boulanger."
+      },
+      "items": [
+        {
+          "id": "banh-mi-schwein",
+          "name": {
+            "de": "Bánh Mì Thịt Kho",
+            "en": "Bánh Mì Thịt Kho"
+          },
+          "description": {
+            "de": "Geschmorter Schweinebauch, vietnamesische Leberwurst nach Mamas Rezept",
+            "en": "Braised pork belly and Vietnamese liver pâté made to Mum's recipe"
+          },
+          "prices": [
+            {
+              "amount": 7.9
+            }
+          ],
+          "image": "banhmi-schwein",
+          "allergens": null,
+          "tags": ["klassisch"]
+        },
+        {
+          "id": "banh-mi-haehnchen",
+          "name": {
+            "de": "Bánh Mì Gà",
+            "en": "Bánh Mì Gà"
+          },
+          "description": {
+            "de": "Saftig marinierte Hähnchenoberkeule",
+            "en": "Juicy marinated chicken thigh"
+          },
+          "prices": [
+            {
+              "amount": 7.5
+            }
+          ],
+          "image": "banhmi-haehnchen",
+          "allergens": null,
+          "tags": []
+        },
+        {
+          "id": "banh-mi-sua",
+          "name": {
+            "de": "Bánh Mì Sữa",
+            "en": "Bánh Mì Sữa"
+          },
+          "description": {
+            "de": "Mit gezuckerter Kondensmilch, ohne Basis",
+            "en": "With sweetened condensed milk, without the base"
+          },
+          "prices": [
+            {
+              "amount": 3.9
+            }
+          ],
+          "image": null,
+          "allergens": null,
+          "tags": ["suess"]
+        }
+      ],
+      "groups": []
+    },
+    {
+      "id": "vegan-vegetarisch",
+      "name": {
+        "de": "Vegan / Vegetarisch",
+        "en": "Vegan / Vegetarian"
+      },
+      "image": "banhmi-tofu",
+      "note": {
+        "de": "Basis bei jedem Bánh Mì: eingelegte Karotten, Gurken, eingelegter Rettich, Koriander, Jasmin-Zitronengras-Soße und scharfe Tamarind-Soße. Serviert auf speziell für uns gebackenem Elias Boulanger Baguette.",
+        "en": "Every bánh mì comes with: pickled carrots, cucumber, pickled radish, coriander, jasmine lemongrass sauce and spicy tamarind sauce. Served on a baguette baked especially for us by Elias Boulanger."
+      },
+      "items": [
+        {
+          "id": "banh-mi-tofu",
+          "name": {
+            "de": "Bánh Mì Đậu Phụ",
+            "en": "Bánh Mì Đậu Phụ"
+          },
+          "description": {
+            "de": "Eingelegter gebratener Tofu",
+            "en": "Marinated fried tofu"
+          },
+          "prices": [
+            {
+              "amount": 6.5
+            }
+          ],
+          "image": "banhmi-tofu",
+          "allergens": null,
+          "tags": ["vegan"]
+        },
+        {
+          "id": "banh-mi-ei",
+          "name": {
+            "de": "Bánh Mì Trứng",
+            "en": "Bánh Mì Trứng"
+          },
+          "description": {
+            "de": "Würzig frisch gebratenes Omelette",
+            "en": "Well-seasoned, freshly fried omelette"
+          },
+          "prices": [
+            {
+              "amount": 6.9
+            }
+          ],
+          "image": "banhmi-ei",
+          "allergens": null,
+          "tags": ["vegetarisch"]
+        }
+      ],
+      "groups": []
+    },
+    {
       "id": "kaffee-getraenke",
       "name": {
         "de": "Kaffee & Getränke",
@@ -881,131 +1006,6 @@
       "image": null,
       "note": null,
       "items": [],
-      "groups": []
-    },
-    {
-      "id": "snacks-lunch",
-      "name": {
-        "de": "Snacks / Lunch",
-        "en": "Snacks / Lunch"
-      },
-      "image": "banhmi-schwein",
-      "note": {
-        "de": "Basis bei jedem Bánh Mì: eingelegte Karotten, Gurken, eingelegter Rettich, Koriander, Jasmin-Zitronengras-Soße und scharfe Tamarind-Soße. Serviert auf speziell für uns gebackenem Elias Boulanger Baguette.",
-        "en": "Every bánh mì comes with: pickled carrots, cucumber, pickled radish, coriander, jasmine lemongrass sauce and spicy tamarind sauce. Served on a baguette baked especially for us by Elias Boulanger."
-      },
-      "items": [
-        {
-          "id": "banh-mi-schwein",
-          "name": {
-            "de": "Bánh Mì Thịt Kho",
-            "en": "Bánh Mì Thịt Kho"
-          },
-          "description": {
-            "de": "Geschmorter Schweinebauch, vietnamesische Leberwurst nach Mamas Rezept",
-            "en": "Braised pork belly and Vietnamese liver pâté made to Mum's recipe"
-          },
-          "prices": [
-            {
-              "amount": 7.9
-            }
-          ],
-          "image": "banhmi-schwein",
-          "allergens": null,
-          "tags": ["klassisch"]
-        },
-        {
-          "id": "banh-mi-haehnchen",
-          "name": {
-            "de": "Bánh Mì Gà",
-            "en": "Bánh Mì Gà"
-          },
-          "description": {
-            "de": "Saftig marinierte Hähnchenoberkeule",
-            "en": "Juicy marinated chicken thigh"
-          },
-          "prices": [
-            {
-              "amount": 7.5
-            }
-          ],
-          "image": "banhmi-haehnchen",
-          "allergens": null,
-          "tags": []
-        },
-        {
-          "id": "banh-mi-sua",
-          "name": {
-            "de": "Bánh Mì Sữa",
-            "en": "Bánh Mì Sữa"
-          },
-          "description": {
-            "de": "Mit gezuckerter Kondensmilch, ohne Basis",
-            "en": "With sweetened condensed milk, without the base"
-          },
-          "prices": [
-            {
-              "amount": 3.9
-            }
-          ],
-          "image": null,
-          "allergens": null,
-          "tags": ["suess"]
-        }
-      ],
-      "groups": []
-    },
-    {
-      "id": "vegan-vegetarisch",
-      "name": {
-        "de": "Vegan / Vegetarisch",
-        "en": "Vegan / Vegetarian"
-      },
-      "image": "banhmi-tofu",
-      "note": {
-        "de": "Basis bei jedem Bánh Mì: eingelegte Karotten, Gurken, eingelegter Rettich, Koriander, Jasmin-Zitronengras-Soße und scharfe Tamarind-Soße. Serviert auf speziell für uns gebackenem Elias Boulanger Baguette.",
-        "en": "Every bánh mì comes with: pickled carrots, cucumber, pickled radish, coriander, jasmine lemongrass sauce and spicy tamarind sauce. Served on a baguette baked especially for us by Elias Boulanger."
-      },
-      "items": [
-        {
-          "id": "banh-mi-tofu",
-          "name": {
-            "de": "Bánh Mì Đậu Phụ",
-            "en": "Bánh Mì Đậu Phụ"
-          },
-          "description": {
-            "de": "Eingelegter gebratener Tofu",
-            "en": "Marinated fried tofu"
-          },
-          "prices": [
-            {
-              "amount": 6.5
-            }
-          ],
-          "image": "banhmi-tofu",
-          "allergens": null,
-          "tags": ["vegan"]
-        },
-        {
-          "id": "banh-mi-ei",
-          "name": {
-            "de": "Bánh Mì Trứng",
-            "en": "Bánh Mì Trứng"
-          },
-          "description": {
-            "de": "Würzig frisch gebratenes Omelette",
-            "en": "Well-seasoned, freshly fried omelette"
-          },
-          "prices": [
-            {
-              "amount": 6.9
-            }
-          ],
-          "image": "banhmi-ei",
-          "allergens": null,
-          "tags": ["vegetarisch"]
-        }
-      ],
       "groups": []
     }
   ]

@@ -19,7 +19,7 @@ test('site.json entspricht dem Schema', () => {
 
 test('Speisekarte hat die fünf Kategorien aus dem Entwurf', () => {
   const ids = Menu.parse(menu).categories.map((c) => c.id);
-  assert.deepEqual(ids, ['kaffee-getraenke', 'fruehstueck', 'kuchen-desserts', 'snacks-lunch', 'vegan-vegetarisch']);
+  assert.deepEqual(ids, ['snacks-lunch', 'vegan-vegetarisch', 'kaffee-getraenke', 'fruehstueck', 'kuchen-desserts']);
 });
 
 const allItems = (m) => m.categories.flatMap((c) => [...c.items, ...c.groups.flatMap((g) => g.items)]);
@@ -46,10 +46,10 @@ test('IDs sind eindeutig (Kategorien, Gruppen, Positionen)', () => {
 
 test('Schema lehnt negative Preise und leere Preislisten ab', () => {
   const negative = structuredClone(menu);
-  negative.categories[3].items[0].prices[0].amount = -1;
+  negative.categories[0].items[0].prices[0].amount = -1;
   assert.throws(() => Menu.parse(negative));
   const empty = structuredClone(menu);
-  empty.categories[3].items[0].prices = [];
+  empty.categories[0].items[0].prices = [];
   assert.throws(() => Menu.parse(empty));
 });
 
@@ -69,10 +69,10 @@ test('Schema verlangt DE- und EN-Namen', () => {
 
 test('Allergene: null = offen, Liste = gepflegt, Feld ist Pflicht', () => {
   const ok = structuredClone(menu);
-  ok.categories[3].items[0].allergens = ['A', 'C'];
+  ok.categories[0].items[0].allergens = ['A', 'C'];
   assert.doesNotThrow(() => Menu.parse(ok));
   const missing = structuredClone(menu);
-  delete missing.categories[3].items[0].allergens;
+  delete missing.categories[0].items[0].allergens;
   assert.throws(() => Menu.parse(missing));
 });
 
