@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import { routes } from './src/i18n/routes.ts';
 import siteData from './src/data/site.json' with { type: 'json' };
 
-// Domain nur in src/data/site.json pflegen (Hauptdomain: RÜCKFRAGE offen).
+// Domain nur in src/data/site.json pflegen (Hauptdomain www.anthony-banhmi.de, entschieden am 16.11.2026).
 const SITE = siteData.url;
 
 export default defineConfig({

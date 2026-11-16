@@ -36,7 +36,7 @@ Auftrag der Goodstuff GmbH. Spezifikation: `docs/specs/`, Plan: `docs/plans/`, D
 3. Impressumsdaten; Impressum, Datenschutz und Allergenhinweis rechtlich prüfen lassen. Entschieden am 01.11.2026 (office@thats-coffee.de, Name in Akte nachtragen): Allergene wie auf der Karte nur als „Allergenliste auf Anfrage“, nicht je Gericht.
 4. Logo als SVG, Zustimmung zur Porträtnutzung
 5. Echte Produktfotos (aktuelle wirken KI-generiert)
-6. Hauptdomain (`anthonybanhmi.com`, `.de` oder `anthony-banhmi.de`) und Hosting; die E-Mail-Adresse spricht für `anthony-banhmi.de`, `site.url` steht noch auf `anthonybanhmi.com`
+6. Hosting: GitHub Pages, DNS bei STRATO am 16.11.2026 umgestellt (A, AAAA, CNAME www; MX unverändert). Hauptdomain `www.anthony-banhmi.de` (16.11.2026). Offen: Repo öffentlich nach Security-Check, Pages-Workflow, Search Console (Domain-Bestätigung per DNS-TXT), Google-Unternehmensprofil-Link in `site.social`
 7. Bereich-ID für die GG-Vorgangsakte
 
 Prüfberichte: `docs/faktencheck-2026-10-28.md`. Barrierefreiheit: axe-core (WCAG 2.2 AA) 0 Verstöße auf 15 Seiten × 2 Viewports (28.10.2026).
