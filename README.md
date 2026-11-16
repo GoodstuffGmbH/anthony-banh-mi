@@ -24,6 +24,13 @@ Designsprache: `DESIGN.md`.
 
 ## Deployment
 
-GitHub Pages über `.github/workflows/pages.yml`: Jeder Push auf `main` wird getestet, gebaut und veröffentlicht. Domain: `www.anthony-banhmi.de`.
+Hosting: STRATO-Webspace des Inhabers, Zugang nur per SFTP. Domain: `www.anthony-banhmi.de`. Header und HTTPS-Weiterleitung: `public/.htaccess`.
+
+- `.github/workflows/ci.yml` prüft jeden Push und Pull Request (Tests, Typen, Build, Links). Es veröffentlicht nichts.
+- `.github/workflows/strato-upload.yml` lädt hoch, nur von Hand und nur von `main`: GitHub → Actions → „Upload zu STRATO“ → Run workflow. Pflichtfeld „freigabe“ mit Name und Datum; „livegang“ anhaken verlangt eine grüne Launch-Prüfung. Auf dem Server wird nichts gelöscht.
+- Secrets einmalig unter Settings → Secrets and variables → Actions eintragen: `STRATO_SFTP_HOST`, `STRATO_SFTP_USER`, `STRATO_SFTP_PASSWORD`, `STRATO_SFTP_ZIEL` (Ordner, auf den die Domain zeigt), `STRATO_SFTP_KNOWN_HOSTS`.
+- `STRATO_SFTP_KNOWN_HOSTS`: Ausgabe von `ssh-keyscan -t ed25519,rsa <Host>`. Vorher den Fingerabdruck (`ssh-keygen -lf <(ssh-keyscan <Host>)`) mit dem abgleichen, den STRATO angibt bzw. den der erste manuelle `sftp`-Login zeigt.
+- Bei STRATO: Domain auf den Zielordner zeigen lassen, SSL-Zertifikat aktivieren, Weiterleitung auf die Hauptdomain einrichten.
+- Achtung: Ein STRATO-Verzeichnisschutz schreibt eine eigene `.htaccess` in den Ordner; der Upload überschreibt sie. Einen passwortgeschützten Probe-Upload vorher mit STRATO klären.
 
 Barrierefreiheit: axe-core (WCAG 2.2 AA) 0 Verstöße auf 15 Seiten × 2 Viewports (28.10.2026).
