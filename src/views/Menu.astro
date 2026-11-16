@@ -1,0 +1,218 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import MenuItem from '../components/MenuItem.astro';
+import MenuRow from '../components/MenuRow.astro';
+import Placeholder from '../components/Placeholder.astro';
+import RelatedLinks from '../components/RelatedLinks.astro';
+import { menu, visibleCategories } from '../data';
+import { breadcrumb, menuSchema } from '../data/structured';
+import { formatPrice } from '../lib/format';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<Base
+  {lang}
+  routeKey="menu"
+  title={t.seo.menu.title}
+  description={t.seo.menu.description}
+  jsonLd={[menuSchema(lang), breadcrumb(lang, 'menu', t.menu.title)]}
+>
+  <PageHeader {lang} title={t.menu.title} lead={t.menu.lead} />
+
+  <div class="container layout section">
+    <nav class="jump" aria-labelledby="kategorien-nav">
+      <h2 id="kategorien-nav" class="visually-hidden">{t.home.categoriesTitle}</h2>
+      <ul role="list">
+        {
+          visibleCategories.map((c) => (
+            <li>
+              <a class="label" href={`#${c.id}`}>
+                {c.name[lang]}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="categories">
+      {
+        visibleCategories.map((c) => (
+          <section id={c.id} aria-labelledby={`${c.id}-titel`} class="category">
+            <h2 id={`${c.id}-titel`}>{c.name[lang]}</h2>
+            {c.note && <p class="category-note">{c.note[lang]}</p>}
+            {c.items.length > 0 && (
+              <div class="items">
+                {c.items.map((item) => (
+                  <MenuItem {item} {lang} />
+                ))}
+              </div>
+            )}
+            {c.groups.length > 0 && (
+              <div class="groups">
+                {c.groups.map((g) => (
+                  <section id={g.id} aria-labelledby={`${g.id}-titel`} class="group">
+                    <h3 id={`${g.id}-titel`}>{g.name[lang]}</h3>
+                    {g.note && <p class="group-note">{g.note[lang]}</p>}
+                    <ul class="rows" role="list">
+                      {g.items.map((item) => (
+                        <MenuRow {item} {lang} />
+                      ))}
+                    </ul>
+                    {g.extras.length > 0 && (
+                      <ul class="extras" role="list">
+                        {g.extras.map((e) => (
+                          <li>
+                            <span>{e.name[lang]}</span>
+                            <span>
+                              <span class="visually-hidden">{t.menu.extras}: </span>+ {formatPrice(e.amount, lang)}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </section>
+                ))}
+              </div>
+            )}
+          </section>
+        ))
+      }
+      <div class="note">
+        <p>{t.menu.priceNote}</p>
+        <p>{menu.allergenInfo ? menu.allergenInfo[lang] : <Placeholder text="Hinweis zu Allergenen" />}</p>
+      </div>
+    </div>
+  </div>
+  <RelatedLinks {lang} current="menu" />
+</Base>
+
+<style>
+  .layout {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  /* Grid-Spalten dürfen schmaler als ihr Inhalt werden (Sprungleiste scrollt). */
+  .layout > * {
+    min-width: 0;
+  }
+
+  .jump ul {
+    display: flex;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: 0 0 var(--space-xs);
+    list-style: none;
+    overflow-x: auto;
+  }
+
+  .jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 var(--space-sm);
+    border: 1px solid var(--color-surface-strong);
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .jump a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-text);
+  }
+
+  @media (width >= 64rem) {
+    .layout {
+      grid-template-columns: 14rem 1fr;
+      align-items: start;
+    }
+
+    .jump {
+      position: sticky;
+      top: calc(var(--header-height) + var(--space-lg));
+    }
+
+    .jump ul {
+      flex-direction: column;
+      overflow: visible;
+    }
+  }
+
+  .categories {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .category {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-md);
+  }
+
+  .category-note {
+    max-width: 60ch;
+    color: var(--color-text-muted);
+  }
+
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: var(--space-xl) var(--space-2xl);
+  }
+
+  .group {
+    display: grid;
+    align-content: start;
+    gap: var(--space-xs);
+  }
+
+  .group-note {
+    font-size: var(--fs-small);
+    color: var(--color-accent-text);
+  }
+
+  .rows,
+  .extras {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .extras {
+    display: grid;
+    gap: var(--space-2xs);
+    padding: var(--space-sm);
+    background: var(--color-inverse);
+    color: var(--color-on-inverse);
+    font-size: var(--fs-small);
+  }
+
+  .extras li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .note {
+    display: grid;
+    gap: var(--space-2xs);
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+</style>

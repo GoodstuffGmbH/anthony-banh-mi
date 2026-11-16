@@ -1,0 +1,102 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import Prices from './Prices.astro';
+import Tags from './Tags.astro';
+import { image } from '../data';
+import type { MenuItemT } from '../data/schema';
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  item: MenuItemT;
+  lang: Lang;
+}
+
+const { item, lang } = Astro.props;
+const t = useT(lang);
+---
+
+<article class="item">
+  {
+    item.image ? (
+      <Picture
+        src={image(item.image)}
+        alt={item.name[lang]}
+        widths={[320, 480, 640]}
+        sizes="(width < 45rem) 100vw, 320px"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        class="photo"
+      />
+    ) : (
+      <span class="photo empty">
+        <Icon name="star" size={32} />
+        <span class="soon">{t.menu.photoSoon}</span>
+      </span>
+    )
+  }
+  <div class="body">
+    <header class="head">
+      <h3>{item.name[lang]}</h3>
+      <Prices prices={item.prices} {lang} />
+    </header>
+    <Tags tags={item.tags} {lang} />
+    {item.description && <p>{item.description[lang]}</p>}
+    {
+      item.allergens && (
+        <p class="allergens">
+          {t.menu.allergens}: {item.allergens.length ? item.allergens.join(', ') : t.menu.allergensNone}
+        </p>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .item {
+    display: grid;
+    align-content: start;
+    background: var(--color-surface);
+  }
+
+  .photo :global(img),
+  .photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* Gleiche Fläche wie ein Foto, damit die Karten in einer Reihe bündig bleiben. */
+  .empty {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-xs);
+    background: var(--color-inverse);
+    color: var(--color-accent-on-inverse);
+  }
+
+  .soon {
+    font-size: var(--fs-small);
+    color: var(--cream-200);
+  }
+
+  .body {
+    display: grid;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+
+  .allergens {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+</style>

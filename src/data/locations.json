@@ -1,0 +1,13 @@
+[
+  {
+    "id": "standort-1",
+    "name": "Dresden",
+    "street": "Hoyerswerdaer Straße 26",
+    "postalCode": "01099",
+    "city": "Dresden",
+    "phone": "0351 27573702",
+    "email": "contact@anthony-banhmi.de",
+    "hours": null,
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hoyerswerdaer+Stra%C3%9Fe+26%2C+01099+Dresden"
+  }
+]

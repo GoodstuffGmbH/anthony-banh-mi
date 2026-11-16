@@ -1,0 +1,293 @@
+---
+import { Picture, Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import CategoryTile from '../components/CategoryTile.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import { image, visibleCategories } from '../data';
+import { restaurant } from '../data/structured';
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+const hero = image('banhmi-haehnchen');
+const og = await getImage({ src: hero, width: 1024, format: 'jpg' });
+
+const categoryIcons: Record<string, IconName> = {
+  'kaffee-getraenke': 'cup',
+  fruehstueck: 'star',
+  'kuchen-desserts': 'cake',
+  'snacks-lunch': 'leaf',
+  'vegan-vegetarisch': 'leaf',
+};
+const valueIcons: Record<keyof typeof t.home.values, IconName> = {
+  fresh: 'leaf',
+  authentic: 'heart',
+  cafe: 'star',
+  sustainable: 'globe',
+};
+---
+
+<Base
+  {lang}
+  routeKey="home"
+  title={t.meta.homeTitle}
+  description={t.meta.homeDescription}
+  ogImage={og.src}
+  jsonLd={[restaurant(lang, og.src)]}
+>
+  <section class="hero inverse">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">{t.home.eyebrow}</p>
+        <h1 class="display">
+          <span class="visually-hidden">Anthony Bánh Mì: </span>
+          {t.home.title.map((line) => <span>{line}</span>)}
+        </h1>
+        <p class="lead">{t.home.lead}</p>
+        <Button href={href('menu', lang)}>{t.home.cta}</Button>
+      </div>
+      <Picture
+        src={hero}
+        alt={t.home.heroAlt}
+        widths={[480, 720, 1024]}
+        sizes="(width < 56rem) 100vw, 50vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+        fetchpriority="high"
+        class="hero-image"
+      />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="kategorien">
+    <div class="container">
+      <h2 id="kategorien" class="visually-hidden">{t.home.categoriesTitle}</h2>
+      <ul class="tiles" role="list">
+        {
+          visibleCategories.map((c) => (
+            <li>
+              <CategoryTile
+                href={href('menu', lang, c.id)}
+                label={c.name[lang]}
+                imageKey={c.image}
+                fallbackIcon={categoryIcons[c.id] ?? 'leaf'}
+                photoSoon={t.menu.photoSoon}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section features-section">
+    <div class="container features">
+      <FeatureCard
+        variant="inverse"
+        icon="pin"
+        title={t.home.locationsTitle}
+        text={t.home.locationsText}
+        cta={t.home.locationsCta}
+        href={href('locations', lang)}
+      />
+      <FeatureCard
+        variant="plain"
+        title={t.home.aboutTitle}
+        text={t.home.aboutText}
+        cta={t.home.aboutCta}
+        href={href('about', lang)}
+      >
+        <Image slot="visual" src={image('logo-portrait')} alt="" width={120} height={120} densities={[1, 2]} class="portrait" />
+      </FeatureCard>
+      <FeatureCard
+        variant="inverse"
+        icon="people"
+        title={t.home.careersTitle}
+        text={t.home.careersText}
+        cta={t.home.careersCta}
+        href={href('careers', lang)}
+      />
+    </div>
+  </section>
+
+  <section class="franchise inverse" aria-labelledby="franchise">
+    <div class="container franchise-grid">
+      <div class="stack">
+        <h2 id="franchise">{t.home.franchiseTitle}</h2>
+        <p class="lead">
+          {t.home.franchiseText[0]}<br />
+          {t.home.franchiseText[1]}
+        </p>
+        <Button href={href('franchise', lang)} variant="outline">{t.home.franchiseCta}</Button>
+      </div>
+      <Picture
+        src={image('banhmi-ei')}
+        alt=""
+        widths={[480, 720]}
+        sizes="(width < 56rem) 100vw, 45vw"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        class="franchise-image"
+      />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="werte">
+    <div class="container">
+      <h2 id="werte" class="visually-hidden">{t.home.valuesTitle}</h2>
+      <ul class="values" role="list">
+        {
+          Object.entries(t.home.values).map(([key, label]) => (
+            <li>
+              <Icon name={valueIcons[key as keyof typeof valueIcons]} size={32} />
+              <span class="label">{label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    align-items: center;
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl);
+  }
+
+  .hero-text {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-md);
+    container-type: inline-size;
+  }
+
+  /* Slogan nie trennen: Größe folgt der Spaltenbreite („Vietnamesisch.“ ist das längste Wort). */
+  .display {
+    display: grid;
+    font-size: clamp(2rem, 10cqi, 4rem);
+    line-height: 1.05;
+    hyphens: manual;
+  }
+
+  .hero-image,
+  .hero-image :global(img) {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  @media (width >= 56rem) {
+    .hero-grid {
+      grid-template-columns: 1fr 1.1fr;
+      padding-block: var(--space-3xl);
+    }
+  }
+
+  /* Kacheln: mobil horizontal scrollbar, ab Tablet Raster. */
+  .tiles {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(70%, 15rem);
+    gap: var(--space-sm);
+    margin: 0;
+    padding: 0 0 var(--space-xs);
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .tiles li {
+    scroll-snap-align: start;
+  }
+
+  @media (width >= 45rem) {
+    .tiles {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      overflow: visible;
+    }
+  }
+
+  .features-section {
+    padding-top: 0;
+  }
+
+  .features {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  @media (width >= 56rem) {
+    .features {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .portrait {
+    border-radius: 50%;
+  }
+
+  .franchise-grid {
+    display: grid;
+    align-items: center;
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl);
+  }
+
+  .franchise-image,
+  .franchise-image :global(img) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  @media (width >= 56rem) {
+    .franchise-grid {
+      grid-template-columns: 1fr 1.2fr;
+      padding-block: 0;
+    }
+
+    .franchise {
+      padding-block: var(--space-xl);
+    }
+  }
+
+  .values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+
+  .values li {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-sm);
+    color: var(--color-heading);
+  }
+
+  @media (width >= 45rem) {
+    .values {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

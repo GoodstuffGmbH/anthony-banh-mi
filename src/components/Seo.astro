@@ -1,0 +1,39 @@
+---
+import { site } from '../data';
+import { routes, type Lang, type RouteKey } from '../i18n/routes';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  routeKey?: RouteKey;
+  ogImage?: string;
+}
+
+const { title, description, lang, routeKey, ogImage } = Astro.props;
+const abs = (path: string) => new URL(path, site.url).href;
+const canonical = routeKey ? abs(routes[routeKey][lang]) : undefined;
+const fullTitle = routeKey === 'home' ? title : `${title} | ${site.name}`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+{!site.indexable && <meta name="robots" content="noindex, nofollow" />}
+{canonical && <link rel="canonical" href={canonical} />}
+{
+  routeKey && (
+    <>
+      <link rel="alternate" hreflang="de" href={abs(routes[routeKey].de)} />
+      <link rel="alternate" hreflang="en" href={abs(routes[routeKey].en)} />
+      <link rel="alternate" hreflang="x-default" href={abs(routes[routeKey].de)} />
+    </>
+  )
+}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_GB'} />
+{canonical && <meta property="og:url" content={canonical} />}
+{ogImage && <meta property="og:image" content={abs(ogImage)} />}
+<meta name="twitter:card" content="summary_large_image" />

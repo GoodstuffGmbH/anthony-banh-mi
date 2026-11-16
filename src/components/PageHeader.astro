@@ -1,0 +1,70 @@
+---
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  lead?: string;
+}
+
+const { lang, title, lead } = Astro.props;
+const t = useT(lang);
+---
+
+<section class="page-header inverse">
+  <div class="container">
+    <nav aria-label={t.a11y.breadcrumb}>
+      <ol class="crumbs label" role="list">
+        <li><a href={href('home', lang)}>Anthony Bánh Mì</a></li>
+        <li aria-current="page">{title}</li>
+      </ol>
+    </nav>
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <span class="ornament" aria-hidden="true"></span>
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin: 0 0 var(--space-md);
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-muted);
+  }
+
+  .crumbs li + li::before {
+    content: '/';
+    margin-right: var(--space-xs);
+    color: var(--color-accent);
+  }
+
+  .crumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .crumbs a:hover {
+    color: var(--color-accent-text);
+  }
+
+  .lead {
+    margin-top: var(--space-sm);
+  }
+
+  .ornament {
+    display: block;
+    width: 6rem;
+    height: 1px;
+    margin-top: var(--space-lg);
+    background: var(--color-accent);
+  }
+</style>
