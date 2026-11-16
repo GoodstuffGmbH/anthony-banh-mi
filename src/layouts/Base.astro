@@ -28,6 +28,17 @@ const t = useT(lang);
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    {
+      /* GitHub Pages setzt keine eigenen Header (.htaccess gilt dort nicht), daher CSP als Meta.
+         Nur im Build: Der Dev-Server fügt Styles per JS ein. frame-ancestors wirkt als Meta nicht. */
+      import.meta.env.PROD && (
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+        />
+      )
+    }
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fbf6ee" />
     <link rel="preload" href={jostLatin} as="font" type="font/woff2" crossorigin />
