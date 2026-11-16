@@ -1,5 +1,5 @@
 # Prüft jeden Push auf main und jeden Pull Request: Tests, Typen, Build, Links.
-# Veröffentlicht nichts. Hochladen: .github/workflows/strato-upload.yml (manuell).
+# Veröffentlicht nichts. Veröffentlichen: .github/workflows/pages.yml (manuell).
 # Actions sind auf Commit-SHAs gepinnt; Dependabot aktualisiert sie.
 name: CI
 
