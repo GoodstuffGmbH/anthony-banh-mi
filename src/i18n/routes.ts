@@ -21,5 +21,8 @@ export type RouteKey = keyof typeof routes;
 export const hiddenRoutes: ReadonlySet<RouteKey> = new Set<RouteKey>(['franchise', 'careers']);
 export const isVisible = (key: RouteKey) => !hiddenRoutes.has(key);
 
+// Abschnitt „Unsere Geschichte“ auf Über uns: aus, bis der Text vom Restaurant da ist (19.11.2026).
+export const showAboutStory = false;
+
 export const href = (key: RouteKey, lang: Lang, hash?: string) => routes[key][lang] + (hash ? `#${hash}` : '');
 export const otherLang = (lang: Lang): Lang => (lang === 'de' ? 'en' : 'de');
