@@ -2,7 +2,7 @@
   "name": "Anthony Bánh Mì",
   "tagline": "Vietnamese Sandwich House",
   "url": "https://www.anthony-banhmi.de",
-  "indexable": false,
+  "indexable": true,
   "email": "contact@anthony-banhmi.de",
   "phone": "0351 27573702",
   "social": [],

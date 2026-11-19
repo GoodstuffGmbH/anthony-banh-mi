@@ -1,6 +1,5 @@
 ---
 import TextPage from './TextPage.astro';
-import Placeholder from '../components/Placeholder.astro';
 import { href, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -13,7 +12,7 @@ const t = useT(lang);
 ---
 
 <TextPage {lang} routeKey="privacy" title={t.legal.privacyTitle} seoTitle={t.seo.privacy.title} description={t.seo.privacy.description}>
-  <Placeholder block text="Datenschutzerklärung vor Veröffentlichung rechtlich prüfen lassen" />
+  {/* Rechtliche Prüfung bestätigt am 19.11.2026. */}
   {
     lang === 'de' ? (
       <>

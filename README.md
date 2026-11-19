@@ -19,7 +19,7 @@ Designsprache: `DESIGN.md`.
 
 - Speisekarte: `src/data/menu.json`. `prices: null` = Platzhalter; `volume` in Litern; Getränke in `groups`; Allergene je Gericht nur, wenn eine Liste vorliegt (sonst gilt `allergenInfo`); Kategorien ohne Einträge werden nicht angezeigt
 - Standorte: `src/data/locations.json`
-- Kontakt, Impressum, Indexierung: `src/data/site.json` (`indexable` erst zum Launch auf `true`)
+- Kontakt, Impressum, Indexierung: `src/data/site.json` (`indexable: true` seit dem Livegang am 19.11.2026; rechtliche Prüfung von Impressum und Datenschutz bestätigt am 19.11.2026)
 - Texte: `src/i18n/`
 - Seiten ausblenden: `hiddenRoutes` in `src/i18n/routes.ts` (derzeit Franchise und Karriere, entschieden am 19.11.2026); die Seitendateien liegen als `src/pages/_franchise.astro` usw. und werden nicht gebaut
 
