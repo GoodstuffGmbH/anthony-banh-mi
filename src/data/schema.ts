@@ -74,7 +74,10 @@ export const Site = z.object({
   social: z.array(z.object({ label: z.string(), url: HttpsUrl })),
   operator: z.object({
     company: z.string().nullable(),
+    // Geschäftsführung (vertretungsberechtigt)
     representative: z.string().nullable(),
+    // Prokura, optional im Impressum
+    procuration: z.string().nullable(),
     street: z.string().nullable(),
     postalCode: z.string().nullable(),
     city: z.string().nullable(),
