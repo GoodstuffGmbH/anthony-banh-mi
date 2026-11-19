@@ -1,13 +1,13 @@
 import type { APIRoute } from 'astro';
 import { locations, site, visibleCategories } from '../data';
-import { routes, langs, type RouteKey } from '../i18n/routes';
+import { routes, langs, isVisible, type RouteKey } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
 // llms.txt (llmstxt.org): Kurzfassung der Website für KI-Assistenten.
 // Nur Angaben aus den Daten, nichts Zusätzliches.
 const abs = (path: string) => new URL(path, site.url).href;
 const eur = (n: number) => `${n.toFixed(2).replace('.', ',')} €`;
-const pages: RouteKey[] = ['menu', 'locations', 'about', 'franchise', 'careers', 'contact', 'imprint', 'privacy'];
+const pages = (['menu', 'locations', 'about', 'franchise', 'careers', 'contact', 'imprint', 'privacy'] as RouteKey[]).filter(isVisible);
 
 export const GET: APIRoute = () => {
   const de = useT('de');
