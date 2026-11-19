@@ -32,4 +32,14 @@ Hosting: GitHub Pages aus diesem Repo (öffentlich seit 16.11.2026, entschieden 
 - GitHub Pages setzt keine eigenen Header; `public/.htaccess` und `public/_headers` gelten dort nicht. Die CSP steht deshalb zusätzlich als Meta-Tag in `src/layouts/Base.astro`. HTTPS über „Enforce HTTPS“ in den Pages-Einstellungen.
 - Domain in der Organisation bestätigen (Settings → Pages → Verified domains, TXT-Eintrag bei STRATO), damit kein fremdes Konto sie beanspruchen kann.
 
+## Sicherheit
+
+Statische Seite ohne Server-Code, Formulare, Cookies oder Drittanbieter-Skripte.
+
+- GitHub Pages mit „Enforce HTTPS“; CSP als Meta-Tag (`src/layouts/Base.astro`).
+- Ruleset „main schützen“: kein Löschen, kein Force-Push, Änderungen nur per Pull Request (Squash) mit grünem CI-Check `pruefen`.
+- Actions: nur GitHub-eigene Actions, auf Commit-SHAs gepinnt; Standard-Token nur Lesen; Workflows aus Forks brauchen Freigabe; Veröffentlichen nur manuell von `main` (Umgebung `github-pages` nur für `main`).
+- Secret Scanning mit Push-Schutz, Dependabot-Sicherheitsupdates, vertrauliche Meldung von Lücken (`SECURITY.md`).
+- Eingerichtet am 19.11.2026.
+
 Barrierefreiheit: axe-core (WCAG 2.2 AA) 0 Verstöße auf 15 Seiten × 2 Viewports (28.10.2026).
