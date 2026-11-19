@@ -7,7 +7,17 @@
     "city": "Dresden",
     "phone": "0351 27573702",
     "email": "contact@anthony-banhmi.de",
-    "hours": null,
+    "hours": [
+      {
+        "days": { "de": "Täglich", "en": "Daily" },
+        "time": "12:00–22:00",
+        "spec": {
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "12:00",
+          "closes": "22:00"
+        }
+      }
+    ],
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hoyerswerdaer+Stra%C3%9Fe+26%2C+01099+Dresden"
   }
 ]

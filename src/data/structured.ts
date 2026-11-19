@@ -7,6 +7,7 @@ const abs = (path: string) => new URL(path, site.url).href;
 
 export function restaurant(lang: Lang, imageUrl?: string) {
   const known = locations.filter((l) => l.street && l.city);
+  const hours = locations.flatMap((l) => l.hours ?? []).flatMap((h) => (h.spec ? [h.spec] : []));
   return {
     '@type': 'Restaurant',
     '@id': abs('/#restaurant'),
@@ -27,6 +28,9 @@ export function restaurant(lang: Lang, imageUrl?: string) {
         addressLocality: l.city,
         addressCountry: 'DE',
       })),
+    }),
+    ...(hours.length && {
+      openingHoursSpecification: hours.map((h) => ({ '@type': 'OpeningHoursSpecification', ...h })),
     }),
   };
 }

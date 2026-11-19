@@ -7,6 +7,11 @@ const Slug = z.string().regex(/^[a-z0-9-]+$/);
 // Externe Links nur https: kein javascript:/data: in href.
 const HttpsUrl = z.url({ protocol: /^https$/ });
 
+// Maschinenlesbare Öffnungszeiten für schema.org (openingHoursSpecification).
+const Weekday = z.enum(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+const ClockTime = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/);
+const HoursSpec = z.object({ dayOfWeek: z.array(Weekday).min(1), opens: ClockTime, closes: ClockTime });
+
 // Preis je Größe. volume in Litern, nur bei Getränken mit Größenangabe.
 const Price = z.object({ amount: z.number().positive(), volume: z.number().positive().optional() });
 
@@ -58,7 +63,7 @@ export const Location = z.object({
   city: z.string().nullable(),
   phone: z.string().nullable(),
   email: z.email().nullable(),
-  hours: z.array(z.object({ days: Localized, time: z.string() })).nullable(),
+  hours: z.array(z.object({ days: Localized, time: z.string(), spec: HoursSpec.optional() })).nullable(),
   mapUrl: HttpsUrl.nullable(),
 });
 
