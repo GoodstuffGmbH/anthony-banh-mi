@@ -6,7 +6,7 @@ const de = {
   meta: {
     homeTitle: 'Anthony Bánh Mì – Vietnamesische Sandwiches & Kaffee',
     homeDescription:
-      'Anthony Bánh Mì: frische Zutaten, authentische Aromen und moderne Café-Kultur. Speisekarte, Standorte, Franchise und Karriere.',
+      'Anthony Bánh Mì: frische Zutaten, authentische Aromen und moderne Café-Kultur. Speisekarte, Standorte und Kontakt.',
   },
   seo: {
     menu: {
@@ -35,7 +35,7 @@ const de = {
     },
     contact: {
       title: 'Kontakt',
-      description: 'So erreichst du Anthony Bánh Mì: E-Mail, Telefon und Standorte für Fragen, Lob und Franchise-Anfragen.',
+      description: 'So erreichst du Anthony Bánh Mì: E-Mail, Telefon und Standorte für Fragen und Lob.',
     },
     imprint: { title: 'Impressum', description: 'Impressum von Anthony Bánh Mì: Anbieterkennzeichnung und Kontakt.' },
     privacy: {
@@ -137,7 +137,7 @@ const de = {
   },
   contact: {
     title: 'Kontakt',
-    lead: 'Fragen, Lob oder Franchise-Anfragen: schreib uns.',
+    lead: 'Fragen oder Lob: schreib uns.',
     write: 'E-Mail schreiben',
     call: 'Anrufen',
   },
@@ -164,7 +164,7 @@ const en: Dict = {
   meta: {
     homeTitle: 'Anthony Bánh Mì – Vietnamese Sandwich House',
     homeDescription:
-      'Anthony Bánh Mì: fresh ingredients, authentic flavours and modern café culture. Menu, locations, franchise and careers.',
+      'Anthony Bánh Mì: fresh ingredients, authentic flavours and modern café culture. Menu, locations and contact.',
   },
   seo: {
     menu: {
@@ -193,7 +193,7 @@ const en: Dict = {
     },
     contact: {
       title: 'Contact',
-      description: 'How to reach Anthony Bánh Mì: email, phone and locations for questions, feedback and franchise enquiries.',
+      description: 'How to reach Anthony Bánh Mì: email, phone and locations for questions and feedback.',
     },
     imprint: { title: 'Legal notice', description: 'Legal notice of Anthony Bánh Mì: provider information and contact.' },
     privacy: {
@@ -295,7 +295,7 @@ const en: Dict = {
   },
   contact: {
     title: 'Contact',
-    lead: 'Questions, feedback or franchise enquiries: write to us.',
+    lead: 'Questions or feedback: write to us.',
     write: 'Send an email',
     call: 'Call us',
   },

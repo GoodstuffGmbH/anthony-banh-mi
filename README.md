@@ -21,6 +21,7 @@ Designsprache: `DESIGN.md`.
 - Standorte: `src/data/locations.json`
 - Kontakt, Impressum, Indexierung: `src/data/site.json` (`indexable` erst zum Launch auf `true`)
 - Texte: `src/i18n/`
+- Seiten ausblenden: `hiddenRoutes` in `src/i18n/routes.ts` (derzeit Franchise und Karriere, entschieden am 19.11.2026); die Seitendateien liegen als `src/pages/_franchise.astro` usw. und werden nicht gebaut
 
 ## Deployment
 

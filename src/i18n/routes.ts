@@ -16,5 +16,10 @@ export const routes = {
 
 export type RouteKey = keyof typeof routes;
 
+// Vorerst ausgeblendet (entschieden am 19.11.2026): nicht verlinkt, nicht gebaut.
+// Zum Einblenden hier entfernen und die Seiten in src/pages ohne „_“ benennen.
+export const hiddenRoutes: ReadonlySet<RouteKey> = new Set<RouteKey>(['franchise', 'careers']);
+export const isVisible = (key: RouteKey) => !hiddenRoutes.has(key);
+
 export const href = (key: RouteKey, lang: Lang, hash?: string) => routes[key][lang] + (hash ? `#${hash}` : '');
 export const otherLang = (lang: Lang): Lang => (lang === 'de' ? 'en' : 'de');

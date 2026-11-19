@@ -7,7 +7,7 @@ import FeatureCard from '../components/FeatureCard.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { image, visibleCategories } from '../data';
 import { restaurant } from '../data/structured';
-import { href, type Lang } from '../i18n/routes';
+import { href, isVisible, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
 interface Props {
@@ -106,17 +106,23 @@ const valueIcons: Record<keyof typeof t.home.values, IconName> = {
       >
         <Image slot="visual" src={image('logo-portrait')} alt="" width={120} height={120} densities={[1, 2]} class="portrait" />
       </FeatureCard>
-      <FeatureCard
-        variant="inverse"
-        icon="people"
-        title={t.home.careersTitle}
-        text={t.home.careersText}
-        cta={t.home.careersCta}
-        href={href('careers', lang)}
-      />
+      {
+        isVisible('careers') && (
+          <FeatureCard
+            variant="inverse"
+            icon="people"
+            title={t.home.careersTitle}
+            text={t.home.careersText}
+            cta={t.home.careersCta}
+            href={href('careers', lang)}
+          />
+        )
+      }
     </div>
   </section>
 
+  {
+    isVisible('franchise') && (
   <section class="franchise inverse" aria-labelledby="franchise">
     <div class="container franchise-grid">
       <div class="stack">
@@ -138,6 +144,8 @@ const valueIcons: Record<keyof typeof t.home.values, IconName> = {
       />
     </div>
   </section>
+    )
+  }
 
   <section class="section" aria-labelledby="werte">
     <div class="container">
@@ -234,8 +242,10 @@ const valueIcons: Record<keyof typeof t.home.values, IconName> = {
   }
 
   @media (width >= 56rem) {
+    /* Spalten nach Anzahl der Karten, ohne Lücke bei ausgeblendeten Seiten. */
     .features {
-      grid-template-columns: repeat(3, 1fr);
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
     }
   }
 

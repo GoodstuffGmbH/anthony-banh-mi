@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { href, type Lang, type RouteKey } from '../i18n/routes';
+import { href, isVisible, type Lang, type RouteKey } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
 interface Props {
@@ -18,7 +18,7 @@ const labels: Partial<Record<RouteKey, string>> = {
   careers: t.nav.careers,
   contact: t.nav.contact,
 };
-const links = (Object.keys(labels) as RouteKey[]).filter((k) => k !== current).slice(0, 4);
+const links = (Object.keys(labels) as RouteKey[]).filter((k) => k !== current && isVisible(k)).slice(0, 4);
 ---
 
 <nav class="related" aria-labelledby="mehr-entdecken">

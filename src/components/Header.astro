@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { visibleCategories } from '../data';
-import { href, otherLang, routes, type Lang, type RouteKey } from '../i18n/routes';
+import { href, isVisible, otherLang, routes, type Lang, type RouteKey } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
 interface Props {
@@ -39,11 +39,12 @@ const groups = [
   },
 ] as const;
 
-const singles = [
+const allSingles: { key: RouteKey; label: string }[] = [
   { key: 'franchise', label: t.nav.franchise },
   { key: 'careers', label: t.nav.careers },
   { key: 'contact', label: t.nav.contact },
-] as const;
+];
+const singles = allSingles.filter((s) => isVisible(s.key));
 ---
 
 <header class="site-header">
