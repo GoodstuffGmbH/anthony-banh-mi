@@ -20,9 +20,9 @@ const de = {
         'Alle Standorte von Anthony Bánh Mì mit Adresse, Öffnungszeiten und Route. Finde deinen nächsten Laden für Bánh mì und Kaffee.',
     },
     about: {
-      title: 'Über uns: Geschichte & Konzept',
+      title: 'Über uns: unser Konzept',
       description:
-        'Wer hinter Anthony Bánh Mì steht: unsere Geschichte, unser Konzept und was uns antreibt. Frische Zutaten, authentische Rezepte, moderne Café-Kultur.',
+        'Wer hinter Anthony Bánh Mì steht: unser Konzept und was uns antreibt. Frische Zutaten, authentische Rezepte, moderne Café-Kultur.',
     },
     franchise: {
       title: 'Franchise: Anthony Bánh Mì in deine Stadt',
@@ -78,7 +78,7 @@ const de = {
     locationsText: 'Finde deinen nächsten Anthony Bánh Mì.',
     locationsCta: 'Standortfinder',
     aboutTitle: 'Über uns',
-    aboutText: 'Unsere Geschichte, unser Konzept und was uns antreibt.',
+    aboutText: 'Unser Konzept und was uns antreibt.',
     aboutCta: 'Mehr erfahren',
     careersTitle: 'Karriere',
     careersText: 'Werde Teil unseres Teams.',
@@ -117,7 +117,7 @@ const de = {
   },
   about: {
     title: 'Über uns',
-    lead: 'Unsere Geschichte, unser Konzept und was uns antreibt.',
+    lead: 'Unser Konzept und was uns antreibt.',
     story: 'Unsere Geschichte',
     concept: 'Unser Konzept',
     portraitAlt: 'Gezeichnetes Porträt von Anthony, Gründer von Anthony Bánh Mì',
@@ -178,9 +178,9 @@ const en: Dict = {
         'All Anthony Bánh Mì locations with address, opening hours and directions. Find your nearest shop for bánh mì and coffee.',
     },
     about: {
-      title: 'About us: story & concept',
+      title: 'About us: our concept',
       description:
-        'Who is behind Anthony Bánh Mì: our story, our concept and what drives us. Fresh ingredients, authentic recipes, modern café culture.',
+        'Who is behind Anthony Bánh Mì: our concept and what drives us. Fresh ingredients, authentic recipes, modern café culture.',
     },
     franchise: {
       title: 'Franchise: bring Anthony Bánh Mì to your city',
@@ -236,7 +236,7 @@ const en: Dict = {
     locationsText: 'Find your nearest Anthony Bánh Mì.',
     locationsCta: 'Store finder',
     aboutTitle: 'About us',
-    aboutText: 'Our story, our concept and what drives us.',
+    aboutText: 'Our concept and what drives us.',
     aboutCta: 'Learn more',
     careersTitle: 'Careers',
     careersText: 'Join our team.',
@@ -275,7 +275,7 @@ const en: Dict = {
   },
   about: {
     title: 'About us',
-    lead: 'Our story, our concept and what drives us.',
+    lead: 'Our concept and what drives us.',
     story: 'Our story',
     concept: 'Our concept',
     portraitAlt: 'Drawn portrait of Anthony, founder of Anthony Bánh Mì',

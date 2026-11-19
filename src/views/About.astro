@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import TextPage from './TextPage.astro';
 import Placeholder from '../components/Placeholder.astro';
 import { image } from '../data';
-import type { Lang } from '../i18n/routes';
+import { showAboutStory, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
 interface Props {
@@ -17,8 +17,14 @@ const t = useT(lang);
 <TextPage {lang} routeKey="about" title={t.about.title} lead={t.about.lead} seoTitle={t.seo.about.title} description={t.seo.about.description}>
   <Image src={image('logo-portrait')} alt={t.about.portraitAlt} width={200} height={200} densities={[1, 2]} class="portrait" />
 
-  <h2 id="geschichte">{t.about.story}</h2>
-  <Placeholder block text="Geschichte von Anthony und dem Laden (Herkunft, Gründung, Jahr) – Text vom Restaurant" />
+  {
+    showAboutStory && (
+      <>
+        <h2 id="geschichte">{t.about.story}</h2>
+        <Placeholder block text="Geschichte von Anthony und dem Laden (Herkunft, Gründung, Jahr) – Text vom Restaurant" />
+      </>
+    )
+  }
 
   <h2 id="konzept">{t.about.concept}</h2>
   {
