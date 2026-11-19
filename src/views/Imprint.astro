@@ -34,7 +34,17 @@ const o = site.operator;
   </p>
 
   <h3>{lang === 'de' ? 'Vertreten durch' : 'Represented by'}</h3>
-  <p>{o.representative ?? <Placeholder text="Vertretungsberechtigte Person(en)" />}</p>
+  <p>
+    {lang === 'de' ? 'Geschäftsführung' : 'Managing director'}: {o.representative ?? <Placeholder text="Geschäftsführung" />}
+    {
+      o.procuration && (
+        <>
+          <br />
+          {lang === 'de' ? 'Prokura' : 'Authorised officer (Prokura)'}: {o.procuration}
+        </>
+      )
+    }
+  </p>
 
   <h3>{lang === 'de' ? 'Kontakt' : 'Contact'}</h3>
   <p>
