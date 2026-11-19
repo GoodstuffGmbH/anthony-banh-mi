@@ -7,13 +7,13 @@
   "phone": "0351 27573702",
   "social": [],
   "operator": {
-    "company": "VIAN Hot-Pot Dresden GmbH",
+    "company": "Anthony Banh Mi GmbH",
     "representative": "Quoc Quan Ta",
-    "procuration": "Gia Khanh Ta",
-    "street": "Bergstraße 78",
+    "procuration": null,
+    "street": "Bergstr. 78",
     "postalCode": "01069",
     "city": "Dresden",
-    "register": null,
+    "register": "Amtsgericht Dresden, HRB 48343",
     "vatId": null
   }
 }
