@@ -1,7 +1,7 @@
 ---
 import TextPage from './TextPage.astro';
 import Placeholder from '../components/Placeholder.astro';
-import { locations, site } from '../data';
+import { site } from '../data';
 import { href, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -12,8 +12,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = useT(lang);
 const o = site.operator;
-// Betriebsstätten = Standorte mit vollständiger Anschrift (Quelle: locations.json)
-const sites = locations.filter((l) => l.street && l.postalCode && l.city);
 ---
 
 <TextPage {lang} routeKey="imprint" title={t.legal.imprintTitle} seoTitle={t.seo.imprint.title} description={t.seo.imprint.description}>
@@ -34,21 +32,6 @@ const sites = locations.filter((l) => l.street && l.postalCode && l.city);
     <br />
     {o.postalCode && o.city ? `${o.postalCode} ${o.city}` : <Placeholder text="PLZ und Ort" />}
   </p>
-
-  {
-    sites.length > 0 && (
-      <>
-        <h3>{lang === 'de' ? 'Betriebsstätte' : 'Place of business'}</h3>
-        {sites.map((l) => (
-          <p>
-            {l.street}
-            <br />
-            {l.postalCode} {l.city}
-          </p>
-        ))}
-      </>
-    )
-  }
 
   <h3>{lang === 'de' ? 'Vertreten durch' : 'Represented by'}</h3>
   <p>
