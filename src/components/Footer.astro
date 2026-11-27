@@ -32,6 +32,17 @@ const year = new Date().getFullYear();
         <Icon name="phone" size={18} />
         {site.phone ? <a href={telHref(site.phone)}>{site.phone}</a> : <Placeholder text="Telefonnummer" />}
       </p>
+      {
+        site.social.map((s) => (
+          <p>
+            <Icon name="instagram" size={18} />
+            <a href={s.url} rel="noopener me" target="_blank">
+              {s.label}: @{new URL(s.url).pathname.replaceAll('/', '')}
+              <span class="visually-hidden"> ({t.footer.external})</span>
+            </a>
+          </p>
+        ))
+      }
     </address>
 
     <nav aria-label={t.a11y.footerNav}>
