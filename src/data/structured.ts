@@ -1,5 +1,6 @@
 import { locations, menu, site, visibleCategories } from './index';
 import type { MenuItemT } from './schema';
+import { placeUrl } from '../lib/google';
 import { routes, type Lang, type RouteKey } from '../i18n/routes';
 
 // Schema.org nur mit belegten Feldern. Was in den Daten null ist, fehlt hier.
@@ -7,6 +8,8 @@ const abs = (path: string) => new URL(path, site.url).href;
 
 export function restaurant(lang: Lang, imageUrl?: string) {
   const known = locations.filter((l) => l.street && l.city);
+  // Google-Eintrag: hasMap und sameAs (keine selbst gesetzten Sterne, Google wertet die nicht als Rich Result).
+  const places = locations.flatMap((l) => (l.googlePlaceId ? [placeUrl(l.googlePlaceId, site.name)] : []));
   const hours = locations.flatMap((l) => l.hours ?? []).flatMap((h) => (h.spec ? [h.spec] : []));
   return {
     '@type': 'Restaurant',
@@ -19,7 +22,8 @@ export function restaurant(lang: Lang, imageUrl?: string) {
     ...(imageUrl && { image: abs(imageUrl) }),
     ...(site.email && { email: site.email }),
     ...(site.phone && { telephone: site.phone }),
-    ...(site.social.length && { sameAs: site.social.map((s) => s.url) }),
+    ...(places.length && { hasMap: places[0] }),
+    ...((site.social.length || places.length) && { sameAs: [...site.social.map((s) => s.url), ...places] }),
     ...(known.length && {
       address: known.map((l) => ({
         '@type': 'PostalAddress',

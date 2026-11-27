@@ -114,6 +114,9 @@ const de = {
     email: 'E-Mail',
     map: 'Route planen',
     mapNote: 'öffnet externe Kartenseite',
+    reviews: 'Bewertungen auf Google',
+    review: 'Auf Google bewerten',
+    googleNote: 'öffnet Google in einem neuen Tab',
   },
   about: {
     title: 'Über uns',
@@ -272,6 +275,9 @@ const en: Dict = {
     email: 'Email',
     map: 'Get directions',
     mapNote: 'opens external map site',
+    reviews: 'Reviews on Google',
+    review: 'Rate us on Google',
+    googleNote: 'opens Google in a new tab',
   },
   about: {
     title: 'About us',

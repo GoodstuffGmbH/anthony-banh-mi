@@ -1,8 +1,10 @@
 ---
 import Icon from './Icon.astro';
 import Placeholder from './Placeholder.astro';
+import { site } from '../data';
 import type { LocationT } from '../data/schema';
 import { telHref } from '../lib/format';
+import { placeUrl, writeReviewUrl } from '../lib/google';
 import type { Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -58,15 +60,33 @@ const t = useT(lang);
     </section>
   </div>
 
-  {
-    l.mapUrl && (
-      <a class="map label" href={l.mapUrl} rel="noopener" target="_blank">
-        {t.locations.map}
-        <span class="visually-hidden"> ({t.locations.mapNote})</span>
-        <Icon name="arrow" size={16} />
-      </a>
-    )
-  }
+  <div class="links">
+    {
+      l.mapUrl && (
+        <a class="label" href={l.mapUrl} rel="noopener" target="_blank">
+          {t.locations.map}
+          <span class="visually-hidden"> ({t.locations.mapNote})</span>
+          <Icon name="arrow" size={16} />
+        </a>
+      )
+    }
+    {
+      l.googlePlaceId && (
+        <>
+          <a class="label" href={placeUrl(l.googlePlaceId, `${site.name} ${l.city ?? ''}`.trim())} rel="noopener" target="_blank">
+            {t.locations.reviews}
+            <span class="visually-hidden"> ({t.locations.googleNote})</span>
+            <Icon name="arrow" size={16} />
+          </a>
+          <a class="label" href={writeReviewUrl(l.googlePlaceId)} rel="noopener" target="_blank">
+            {t.locations.review}
+            <span class="visually-hidden"> ({t.locations.googleNote})</span>
+            <Icon name="arrow" size={16} />
+          </a>
+        </>
+      )
+    }
+  </div>
 </article>
 
 <style>
@@ -107,13 +127,20 @@ const t = useT(lang);
 
   dd {
     margin: 0;
+    white-space: nowrap;
   }
 
-  .map {
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .links a {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
-    margin-top: var(--space-lg);
     text-decoration: none;
   }
 </style>
