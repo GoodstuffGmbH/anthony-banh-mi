@@ -5,7 +5,8 @@ import Button from '../components/Button.astro';
 import CategoryTile from '../components/CategoryTile.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import { image, visibleCategories } from '../data';
+import { image, locations, site, visibleCategories } from '../data';
+import { telHref } from '../lib/format';
 import { restaurant } from '../data/structured';
 import { href, isVisible, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
@@ -17,6 +18,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = useT(lang);
 const hero = image('banhmi-haehnchen');
+// Schnellzugriff im Hero: nur, was in den Daten steht (Route vom ersten Standort mit Kartenlink).
+const routeUrl = locations.find((l) => l.mapUrl)?.mapUrl ?? null;
 const og = await getImage({ src: hero, width: 1024, format: 'jpg' });
 
 const categoryIcons: Record<string, IconName> = {
@@ -52,6 +55,41 @@ const valueIcons: Record<keyof typeof t.home.values, IconName> = {
         </h1>
         <p class="lead">{t.home.lead}</p>
         <Button href={href('menu', lang)}>{t.home.cta}</Button>
+        <ul class="actions" role="list" aria-label={t.home.actionsLabel}>
+          {
+            routeUrl && (
+              <li>
+                <a class="action" href={routeUrl} rel="noopener" target="_blank">
+                  <Icon name="pin" size={20} />
+                  <span>{t.home.route}</span>
+                  <span class="visually-hidden"> ({t.locations.mapNote})</span>
+                </a>
+              </li>
+            )
+          }
+          {
+            site.phone && (
+              <li>
+                <a class="action" href={telHref(site.phone)}>
+                  <Icon name="phone" size={20} />
+                  <span>{t.home.call}</span>
+                  <span class="visually-hidden">: {site.phone}</span>
+                </a>
+              </li>
+            )
+          }
+          {
+            site.email && (
+              <li>
+                <a class="action" href={`mailto:${site.email}?subject=${encodeURIComponent(t.home.inquirySubject)}`}>
+                  <Icon name="mail" size={20} />
+                  <span>{t.home.inquiry}</span>
+                  <span class="visually-hidden">: {site.email}</span>
+                </a>
+              </li>
+            )
+          }
+        </ul>
       </div>
       <Picture
         src={hero}
@@ -181,6 +219,47 @@ const valueIcons: Record<keyof typeof t.home.values, IconName> = {
     justify-items: start;
     gap: var(--space-md);
     container-type: inline-size;
+  }
+
+  /* Schnellzugriff: drei gleich breite Tasten, mobil nebeneinander, Touch-Ziel mindestens 2,75 rem. */
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .actions li {
+    flex: 1 1 9rem;
+  }
+
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent-text);
+    text-decoration: none;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .action:hover {
+    background: var(--color-accent);
+    color: var(--green-950);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .action {
+      transition: none;
+    }
   }
 
   /* Slogan nie trennen: Größe folgt der Spaltenbreite („Vietnamesisch.“ ist das längste Wort). */
