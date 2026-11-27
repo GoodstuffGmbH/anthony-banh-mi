@@ -67,6 +67,8 @@ export const Location = z.object({
   mapUrl: HttpsUrl.nullable(),
   // Google-Place-ID (ChIJ…), daraus entstehen Maps- und Bewertungslinks. null = kein Google-Eintrag.
   googlePlaceId: z.string().regex(/^ChIJ[\w-]{10,60}$/).nullable(),
+  // Einbettungs-Adresse der Karte aus Google Maps (öffentlich, kein Schlüssel). null = keine Karte auf der Seite.
+  googleMapEmbedUrl: HttpsUrl.nullable(),
 });
 
 export const Locations = z.array(Location);
