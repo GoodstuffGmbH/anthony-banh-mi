@@ -23,6 +23,13 @@ Designsprache: `DESIGN.md`.
 - Texte: `src/i18n/`
 - Seiten ausblenden: `hiddenRoutes` in `src/i18n/routes.ts` (derzeit Franchise und Karriere, entschieden am 19.11.2026); die Seitendateien liegen als `src/pages/_franchise.astro` usw. und werden nicht gebaut
 
+## Dienste mit Einwilligung (Cookie-Einstellungen)
+
+- Google-Karte auf „Standorte“: `googleMapEmbedUrl` in `src/data/locations.json` (Google Maps → Teilen → Karte einbetten, nur die `src`-Adresse; kein API-Schlüssel). `null` = keine Karte, keine Cookie-Einstellungen, CSP ohne `frame-src`.
+- Lädt erst nach Klick auf „Einwilligen und Karte laden“; Widerruf über „Cookie-Einstellungen“ im Footer. Entscheidung nur im localStorage (`anthony-consent`, 6 Monate), `CONSENT_VERSION` in `src/lib/consent.ts` erhöhen, wenn sich Zweck oder Anbieter ändert.
+- Neuer Dienst (z. B. Statistik): Schlüssel in `CONSENT_KEYS`, Konfiguration in `src/lib/services.ts`, CSP in `src/lib/csp.ts`, Texte in `src/i18n/ui.ts` und Abschnitt in `src/views/Privacy.astro`. Vorher rechtlich prüfen lassen.
+- Eingerichtet am 27.11.2026; Datenschutztexte dazu sind noch nicht juristisch geprüft.
+
 ## Deployment
 
 Hosting: GitHub Pages aus diesem Repo (öffentlich seit 16.11.2026, entschieden am 16.11.2026: kein SFTP im STRATO-Paket). Domain: `www.anthony-banhmi.de`; DNS bei STRATO: `anthony-banhmi.de` A/AAAA auf GitHub Pages, `www` CNAME auf `goodstuffgmbh.github.io`. Mail (MX) bleibt bei STRATO.
@@ -34,7 +41,7 @@ Hosting: GitHub Pages aus diesem Repo (öffentlich seit 16.11.2026, entschieden 
 
 ## Sicherheit
 
-Statische Seite ohne Server-Code, Formulare, Cookies oder Drittanbieter-Skripte.
+Statische Seite ohne Server-Code, Formulare, eigene Cookies oder Drittanbieter-Skripte. Einzige Drittanbieter-Einbindung: Google-Karte, nur nach Einwilligung.
 
 - GitHub Pages mit „Enforce HTTPS“; CSP als Meta-Tag (`src/layouts/Base.astro`).
 - Ruleset „main schützen“: kein Löschen, kein Force-Push, Änderungen nur per Pull Request (Squash) mit grünem CI-Check `pruefen`.

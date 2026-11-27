@@ -80,6 +80,11 @@ const maps = services.maps;
     font-size: var(--fs-label);
   }
 
+  /* Gold auf Beige erreicht nicht 4,5:1 (axe color-contrast), daher Textfarbe. */
+  .more a {
+    color: var(--color-text);
+  }
+
   .live :global(iframe) {
     display: block;
     width: 100%;
