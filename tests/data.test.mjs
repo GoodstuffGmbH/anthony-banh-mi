@@ -83,3 +83,14 @@ test('Kartenlinks nur mit https (kein javascript:/data:)', () => {
   }
   assert.doesNotThrow(() => Locations.parse([{ ...base, mapUrl: 'https://maps.example.org/?q=x' }]));
 });
+
+test('Google-Place-ID: nur ChIJ-Format, daraus entstehen nur https-Links', async () => {
+  const { placeUrl, writeReviewUrl } = await import('../src/lib/google.ts');
+  const base = Locations.parse(locations)[0];
+  assert.match(base.googlePlaceId, /^ChIJ/);
+  for (const bad of ['', 'x', 'javascript:alert(1)', 'ChIJ abc"><script>']) {
+    assert.throws(() => Locations.parse([{ ...base, googlePlaceId: bad }]), bad);
+  }
+  assert.ok(placeUrl(base.googlePlaceId, 'A & B').startsWith('https://www.google.com/maps/search/?api=1&query=A%20%26%20B&query_place_id=ChIJ'));
+  assert.ok(writeReviewUrl(base.googlePlaceId).startsWith('https://search.google.com/local/writereview?placeid=ChIJ'));
+});

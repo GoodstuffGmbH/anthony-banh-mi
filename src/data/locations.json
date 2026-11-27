@@ -9,15 +9,40 @@
     "email": "contact@anthony-banhmi.de",
     "hours": [
       {
-        "days": { "de": "Täglich", "en": "Daily" },
-        "time": "12:00–22:00",
+        "days": {
+          "de": "Sonntag bis Donnerstag",
+          "en": "Sunday to Thursday"
+        },
+        "time": "9:00–18:00",
         "spec": {
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "12:00",
-          "closes": "22:00"
+          "dayOfWeek": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      },
+      {
+        "days": {
+          "de": "Freitag und Samstag",
+          "en": "Friday and Saturday"
+        },
+        "time": "9:00–20:00",
+        "spec": {
+          "dayOfWeek": [
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "20:00"
         }
       }
     ],
-    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hoyerswerdaer+Stra%C3%9Fe+26%2C+01099+Dresden"
+    "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=Anthony+B%C3%A1nh+M%C3%AC%2C+Hoyerswerdaer+Stra%C3%9Fe+26%2C+01099+Dresden&destination_place_id=ChIJUdctc03PCUcRqapmVuRKQ90",
+    "googlePlaceId": "ChIJUdctc03PCUcRqapmVuRKQ90"
   }
 ]

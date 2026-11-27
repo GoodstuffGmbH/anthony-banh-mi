@@ -65,6 +65,8 @@ export const Location = z.object({
   email: z.email().nullable(),
   hours: z.array(z.object({ days: Localized, time: z.string(), spec: HoursSpec.optional() })).nullable(),
   mapUrl: HttpsUrl.nullable(),
+  // Google-Place-ID (ChIJ…), daraus entstehen Maps- und Bewertungslinks. null = kein Google-Eintrag.
+  googlePlaceId: z.string().regex(/^ChIJ[\w-]{10,60}$/).nullable(),
 });
 
 export const Locations = z.array(Location);
