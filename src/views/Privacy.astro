@@ -1,5 +1,6 @@
 ---
 import TextPage from './TextPage.astro';
+import { site } from '../data';
 import { href, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -64,6 +65,16 @@ const t = useT(lang);
           Irland). Dann gelten die Datenschutzbestimmungen von Google. Wir binden keine Karten, Bewertungen oder
           Google-Skripte in diese Seite ein.
         </p>
+        {
+          site.social.some((s) => s.label === 'Instagram') && (
+            <p>
+              Der Link zu unserem Instagram-Profil im Fußbereich öffnet die Seite von Instagram (Meta Platforms Ireland
+              Limited, Merrion Road, Dublin 4, Irland). Erst wenn du ihn anklickst, verarbeitet Instagram Daten. Dann gelten
+              die Datenschutzbestimmungen von Instagram. Wir binden keine Instagram-Inhalte oder Plug-ins in diese Seite
+              ein.
+            </p>
+          )
+        }
 
         <h2>6. Deine Rechte</h2>
         <p>
@@ -100,6 +111,14 @@ const t = useT(lang);
             security purposes (Art. 6(1)(f) GDPR). Data may be transferred to the USA; GitHub states that it complies
             with the EU-U.S. Data Privacy Framework and uses the EU standard contractual clauses.
           </li>
+          {
+            site.social.some((s) => s.label === 'Instagram') && (
+              <li>
+                The link to our Instagram profile opens an external page of Instagram (Meta Platforms Ireland Limited, Dublin);
+                Instagram processes data only once you click it. We embed no Instagram content or plug-ins.
+              </li>
+            )
+          }
           <li>Our links to Google Maps and Google reviews open an external Google page; Google processes data only once you click them. We embed no maps, reviews or Google scripts.</li>
           <li>If you contact us, we use your details only to answer your request.</li>
           <li>You have the rights under Art. 15 to 21 and Art. 77 GDPR, including the right to object (Art. 21 GDPR).</li>

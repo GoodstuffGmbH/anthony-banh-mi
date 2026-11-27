@@ -5,7 +5,12 @@
   "indexable": true,
   "email": "contact@anthony-banhmi.de",
   "phone": "0351 27573702",
-  "social": [],
+  "social": [
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/anthony.banhmi/"
+    }
+  ],
   "operator": {
     "company": "Anthony Banh Mi GmbH",
     "representative": "Quoc Quan Ta",

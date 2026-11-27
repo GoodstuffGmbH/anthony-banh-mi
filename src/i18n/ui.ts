@@ -155,6 +155,7 @@ const de = {
   },
   footer: {
     rights: 'Alle Rechte vorbehalten.',
+    external: 'öffnet externe Seite in einem neuen Tab',
   },
   related: {
     title: 'Mehr entdecken',
@@ -321,6 +322,7 @@ const en: Dict = {
   },
   footer: {
     rights: 'All rights reserved.',
+    external: 'opens an external site in a new tab',
   },
   related: {
     title: 'Discover more',
