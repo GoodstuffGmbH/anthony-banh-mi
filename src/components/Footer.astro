@@ -3,6 +3,8 @@ import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import Placeholder from './Placeholder.astro';
 import { site } from '../data';
+import { services } from '../data/services';
+import { enabledKeys } from '../lib/services';
 import { telHref } from '../lib/format';
 import { href, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
@@ -14,6 +16,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useT(lang);
 const year = new Date().getFullYear();
+const hasConsent = enabledKeys(services).length > 0;
 ---
 
 <footer class="site-footer">
@@ -50,6 +53,13 @@ const year = new Date().getFullYear();
         <li><a href={href('imprint', lang)}>{t.nav.imprint}</a></li>
         <li><a href={href('privacy', lang)}>{t.nav.privacy}</a></li>
         <li><a href={href('contact', lang)}>{t.nav.contact}</a></li>
+        {
+          hasConsent && (
+            <li>
+              <button type="button" class="linklike" data-consent-open aria-haspopup="dialog">{t.nav.cookies}</button>
+            </li>
+          )
+        }
       </ul>
     </nav>
   </div>
@@ -102,8 +112,20 @@ const year = new Date().getFullYear();
     color: var(--color-text);
   }
 
-  a:hover {
+  a:hover,
+  .linklike:hover {
     color: var(--color-accent-text);
+  }
+
+  .linklike {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-text);
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
   }
 
   .legal {

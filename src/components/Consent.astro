@@ -1,0 +1,184 @@
+---
+import { services } from '../data/services';
+import { enabledKeys } from '../lib/services';
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+const keys = enabledKeys(services);
+---
+
+{
+  keys.length > 0 && (
+    <div id="consent">
+      <dialog id="consent-settings" aria-labelledby="consent-title">
+        <form method="dialog">
+          <h1 id="consent-title">{t.consent.settingsTitle}</h1>
+          <p>{t.consent.settingsLead}</p>
+
+          <ul class="services" role="list">
+            {keys.map((key) => (
+              <li>
+                <label class="row">
+                  <span class="text">
+                    <strong>{t.consent.services[key].name}</strong>
+                    <span>{t.consent.services[key].text}</span>
+                  </span>
+                  <input type="checkbox" name={key} {...{ switch: true }} />
+                </label>
+              </li>
+            ))}
+            <li class="row necessary">
+              <span class="text">
+                <strong>{t.consent.necessaryTitle}</strong>
+                <span>{t.consent.necessaryText}</span>
+              </span>
+            </li>
+          </ul>
+
+          <p>
+            <a href={href('privacy', lang)}>{t.consent.more}</a>
+          </p>
+
+          <div class="actions">
+            <button type="button" class="btn" data-consent-action="save">{t.consent.save}</button>
+            <button type="button" class="btn" data-consent-action="accept">{t.consent.acceptAll}</button>
+            <button type="button" class="btn" data-consent-action="reject">{t.consent.rejectAll}</button>
+          </div>
+          <button type="button" class="close" data-consent-action="close" aria-label={t.consent.close}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </form>
+      </dialog>
+    </div>
+  )
+}
+
+<script>
+  import '../scripts/consent';
+</script>
+
+<style>
+  dialog {
+    width: min(36rem, 100% - 2 * var(--gutter));
+    max-height: calc(100dvh - 2 * var(--space-sm));
+    padding: var(--space-lg);
+    border: 1px solid var(--color-surface-strong);
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: var(--shadow-2);
+    overflow-y: auto;
+  }
+
+  /* Ohne diese beiden Regeln scrollt die Seite hinter dem Dialog mit. */
+  dialog:modal {
+    overscroll-behavior: contain;
+  }
+
+  dialog::backdrop {
+    background: var(--color-backdrop);
+    overflow: hidden;
+    overscroll-behavior: contain;
+  }
+
+  form {
+    position: relative;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  h1 {
+    padding-right: var(--space-xl);
+    font-size: var(--fs-h3);
+  }
+
+  .services {
+    display: grid;
+    gap: var(--space-sm);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .row {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    background: var(--color-surface);
+  }
+
+  label.row {
+    cursor: pointer;
+  }
+
+  .text {
+    display: grid;
+    gap: var(--space-2xs);
+    font-size: var(--fs-small);
+  }
+
+  .text strong {
+    font-size: var(--fs-body);
+    font-weight: 500;
+    color: var(--color-heading);
+  }
+
+  input[type='checkbox'] {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    accent-color: var(--color-accent-text);
+    cursor: pointer;
+  }
+
+  input[type='checkbox'][switch] {
+    width: 3rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  /* Annehmen und Ablehnen sehen gleich aus und sind gleich leicht zu finden. */
+  .btn {
+    flex: 1 1 9rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    background: var(--color-accent);
+    color: var(--green-950);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .close {
+    position: absolute;
+    top: calc(-1 * var(--space-xs));
+    right: calc(-1 * var(--space-xs));
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    background: none;
+    color: var(--color-heading);
+    cursor: pointer;
+  }
+</style>

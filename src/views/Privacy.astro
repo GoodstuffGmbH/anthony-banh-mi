@@ -1,6 +1,7 @@
 ---
 import TextPage from './TextPage.astro';
 import { site } from '../data';
+import { services } from '../data/services';
 import { href, type Lang } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -10,19 +11,25 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useT(lang);
+
+// Abschnitte hängen davon ab, welche Dienste mit Einwilligung laufen. Nummern folgen der Reihenfolge.
+const maps = services.maps !== null;
+const order = ['controller', 'hosting', 'cookies', 'contact', ...(maps ? ['consent', 'maps'] : []), 'links', 'rights', 'objection'];
+const n = (key: string) => order.indexOf(key) + 1;
 ---
 
 <TextPage {lang} routeKey="privacy" title={t.legal.privacyTitle} seoTitle={t.seo.privacy.title} description={t.seo.privacy.description}>
-  {/* Rechtliche Prüfung bestätigt am 19.11.2026. */}
+  {/* Rechtliche Prüfung bestätigt am 19.11.2026. Geändert am 27.11.2026 (Löschfrist, Aufsichtsbehörde,
+     Widerspruchsrecht, Google-Links, Instagram, Karte mit Einwilligung): erneute Prüfung offen. */}
   {
     lang === 'de' ? (
       <>
-        <h2>1. Verantwortlicher</h2>
+        <h2>{n('controller')}. Verantwortlicher</h2>
         <p>
           Verantwortlich ist der im <a href={href('imprint', lang)}>Impressum</a> genannte Betreiber.
         </p>
 
-        <h2>2. Hosting über GitHub Pages</h2>
+        <h2>{n('hosting')}. Hosting über GitHub Pages</h2>
         <p>
           Diese Website wird über GitHub Pages bereitgestellt. Anbieter ist die GitHub B.V., Prins Bernhardplein 200,
           1097 JB Amsterdam, Niederlande, und die GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107,
@@ -45,25 +52,92 @@ const t = useT(lang);
           .
         </p>
 
-        <h2>3. Keine Cookies, kein Tracking</h2>
-        <p>
-          Diese Website setzt keine Cookies und verwendet keine Analyse- oder Werbedienste. Schriftarten werden zusammen
-          mit der Website ausgeliefert, nicht über Dritte wie Google Fonts.
-        </p>
+        {
+          maps ? (
+            <>
+              <h2>{n('cookies')}. Cookies und ähnliche Technologien</h2>
+              <p>
+                Ohne deine Einwilligung setzt diese Website keine Cookies und lädt keine Inhalte von Dritten. Es gibt keine
+                Analyse- oder Werbedienste. Schriftarten werden zusammen mit der Website ausgeliefert, nicht über Dritte wie
+                Google Fonts. Technisch notwendig ist nur die Speicherung deiner Auswahl in deinem Browser (siehe Abschnitt{' '}
+                {n('consent')}).
+              </p>
+            </>
+          ) : (
+            <>
+              <h2>{n('cookies')}. Keine Cookies, kein Tracking</h2>
+              <p>
+                Diese Website setzt keine Cookies und verwendet keine Analyse- oder Werbedienste. Schriftarten werden
+                zusammen mit der Website ausgeliefert, nicht über Dritte wie Google Fonts.
+              </p>
+            </>
+          )
+        }
 
-        <h2>4. Kontakt per E-Mail oder Telefon</h2>
+        <h2>{n('contact')}. Kontakt per E-Mail oder Telefon</h2>
         <p>
           Wenn du uns kontaktierst, verarbeiten wir deine Angaben, um die Anfrage zu beantworten. Rechtsgrundlage ist
           Art. 6 Abs. 1 lit. b DSGVO bei vertragsbezogenen Anfragen, sonst Art. 6 Abs. 1 lit. f DSGVO. Wir löschen
           deine Angaben, sobald die Anfrage erledigt ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
         </p>
 
-        <h2>5. Externe Links</h2>
+        {
+          maps && (
+            <>
+              <h2>{n('consent')}. Einwilligung und Widerruf</h2>
+              <p>
+                Optionale Dienste laden wir erst, wenn du einwilligst. Derzeit ist das Google Maps (Karte, siehe Abschnitt{' '}
+                {n('maps')}). Du willigst ein, indem du auf der Seite „Standorte“ auf „Einwilligen und Karte laden“ klickst
+                oder in den „Cookie-Einstellungen“ die Auswahl speicherst. Rechtsgrundlage ist deine Einwilligung (Art. 6
+                Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).
+              </p>
+              <p>
+                Wir speichern deine Entscheidung (welcher Dienst, wann) im lokalen Speicher deines Browsers unter dem
+                Schlüssel „anthony-consent“. Sie gilt 6 Monate, danach fragen wir erneut. Die Auswahl wird nicht an einen
+                Server übertragen. Diese Speicherung ist ohne Einwilligung zulässig, weil sie erforderlich ist, um deine
+                Entscheidung umzusetzen (§ 25 Abs. 2 Nr. 2 TDDDG; Art. 6 Abs. 1 lit. c DSGVO in Verbindung mit Art. 7 Abs.
+                1 DSGVO).
+              </p>
+              <p>
+                <strong>Widerruf:</strong> Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.
+                Klicke dazu im Fußbereich jeder Seite auf „Cookie-Einstellungen“, wähle den Dienst ab und speichere. Die
+                Karte verschwindet dann sofort. Cookies, die Google bereits gesetzt hat, kannst du in deinem Browser
+                löschen. Die Rechtmäßigkeit der Verarbeitung bis zum Widerruf bleibt unberührt (Art. 7 Abs. 3 DSGVO).
+              </p>
+
+              <h2>{n('maps')}. Google Maps (Karte)</h2>
+              <p>
+                Auf der Seite „Standorte“ können wir eine Karte von Google Maps einbetten. Anbieter ist die Google Ireland
+                Limited, Gordon House, Barrow Street, Dublin 4, Irland (Muttergesellschaft: Google LLC, USA). Die Karte
+                laden wir erst, wenn du eingewilligt hast.
+              </p>
+              <p>
+                Beim Laden verbindet sich dein Browser mit Servern von Google. Dabei werden insbesondere deine IP-Adresse
+                sowie Browser- und Geräteangaben an Google übertragen, und Google kann Cookies oder ähnliche Technologien
+                einsetzen. Darauf haben wir keinen Einfluss, und wir erhalten keine Daten über dich von Google. Wie Google
+                Daten verwendet, regeln die{' '}
+                <a href="https://policies.google.com/privacy?hl=de" rel="noopener">Datenschutzbestimmungen von Google</a>.
+                Dabei können Daten in die USA übermittelt werden; Google gibt an, das EU-U.S. Data Privacy Framework
+                einzuhalten, und stützt Übermittlungen zudem auf Standardvertragsklauseln (Art. 45, 46 DSGVO).
+              </p>
+              <p>
+                Der Link „Route planen“ funktioniert unabhängig davon: Er öffnet Google Maps erst nach deinem Klick in
+                einem neuen Tab.
+              </p>
+            </>
+          )
+        }
+
+        <h2>{n('links')}. Externe Links</h2>
         <p>
           Unsere Links zu Google Maps und zu den Google-Bewertungen öffnen eine externe Seite von Google. Erst wenn du
           sie anklickst, verarbeitet Google Daten (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4,
-          Irland). Dann gelten die Datenschutzbestimmungen von Google. Wir binden keine Karten, Bewertungen oder
-          Google-Skripte in diese Seite ein.
+          Irland). Dann gelten die Datenschutzbestimmungen von Google.{' '}
+          {
+            maps
+              ? `Die Karte auf der Seite „Standorte“ wird nur nach deiner Einwilligung geladen (Abschnitt ${n('maps')}). Bewertungen oder andere Google-Skripte binden wir nicht in diese Seite ein.`
+              : 'Wir binden keine Karten, Bewertungen oder Google-Skripte in diese Seite ein.'
+          }
         </p>
         {
           site.social.some((s) => s.label === 'Instagram') && (
@@ -76,14 +150,14 @@ const t = useT(lang);
           )
         }
 
-        <h2>6. Deine Rechte</h2>
+        <h2>{n('rights')}. Deine Rechte</h2>
         <p>
           Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit
           und Widerspruch (Art. 15 bis 21 DSGVO) sowie das Recht auf Beschwerde bei einer Datenschutz-Aufsichtsbehörde
           (Art. 77 DSGVO). Zuständig für uns ist die Sächsische Datenschutz- und Transparenzbeauftragte.
         </p>
 
-        <h2>7. Widerspruchsrecht</h2>
+        <h2>{n('objection')}. Widerspruchsrecht</h2>
         <p>
           <strong>
             Soweit wir Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeiten, kannst du dieser Verarbeitung
@@ -103,7 +177,20 @@ const t = useT(lang);
         </p>
         <h2>Summary</h2>
         <ul>
-          <li>This website sets no cookies and uses no analytics or advertising services.</li>
+          {
+            maps ? (
+              <li>Without your consent, this website sets no cookies and loads no third-party content. It uses no analytics or advertising services.</li>
+            ) : (
+              <li>This website sets no cookies and uses no analytics or advertising services.</li>
+            )
+          }
+          {
+            maps && (
+              <li>
+                The map of Google Maps on the locations page loads only after your consent. Data such as your IP address is then sent to Google (Google Ireland Limited, Dublin; possibly the USA), and Google may set cookies. You can withdraw your consent at any time with effect for the future via “Cookie settings” in the footer; the map then disappears. Your choice is stored only in your browser (local storage, 6 months) and is not sent to a server (Art. 6(1)(a) GDPR, section 25 TDDDG).
+              </li>
+            )
+          }
           <li>Fonts are delivered with the website, not via third parties such as Google Fonts.</li>
           <li>
             The site is hosted on GitHub Pages (GitHub B.V., Amsterdam, and GitHub, Inc., San Francisco, USA). GitHub
@@ -119,7 +206,10 @@ const t = useT(lang);
               </li>
             )
           }
-          <li>Our links to Google Maps and Google reviews open an external Google page; Google processes data only once you click them. We embed no maps, reviews or Google scripts.</li>
+          <li>
+            Our links to Google Maps and Google reviews open an external Google page; Google processes data only once you click them.{' '}
+            {maps ? 'We embed no reviews or other Google scripts.' : 'We embed no maps, reviews or Google scripts.'}
+          </li>
           <li>If you contact us, we use your details only to answer your request.</li>
           <li>You have the rights under Art. 15 to 21 and Art. 77 GDPR, including the right to object (Art. 21 GDPR).</li>
         </ul>

@@ -8,6 +8,9 @@ import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
+import Consent from '../components/Consent.astro';
+import { services } from '../data/services';
+import { buildCsp } from '../lib/csp';
 import { type Lang, type RouteKey } from '../i18n/routes';
 import { useT } from '../i18n/ui';
 
@@ -34,7 +37,7 @@ const t = useT(lang);
       import.meta.env.PROD && (
         <meta
           http-equiv="Content-Security-Policy"
-          content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+          content={buildCsp(services)}
         />
       )
     }
@@ -55,6 +58,7 @@ const t = useT(lang);
       <slot />
     </main>
     <Footer {lang} />
+    <Consent {lang} />
   </body>
 </html>
 

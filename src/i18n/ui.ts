@@ -66,6 +66,7 @@ const de = {
     contact: 'Kontakt',
     imprint: 'Impressum',
     privacy: 'Datenschutz',
+    cookies: 'Cookie-Einstellungen',
   },
   home: {
     eyebrow: 'Vietnamese Sandwich House',
@@ -157,6 +158,31 @@ const de = {
     rights: 'Alle Rechte vorbehalten.',
     external: 'öffnet externe Seite in einem neuen Tab',
   },
+  consent: {
+    settingsTitle: 'Cookie-Einstellungen',
+    settingsLead:
+      'Hier entscheidest du, welche optionalen Dienste du zulässt. Ohne deine Einwilligung werden keine Daten an Dritte übertragen. Du kannst deine Auswahl jederzeit ändern oder widerrufen.',
+    necessaryTitle: 'Notwendig',
+    necessaryText: 'Speichert deine Auswahl in deinem Browser (lokaler Speicher, 6 Monate). Dafür ist keine Einwilligung nötig.',
+    save: 'Auswahl speichern',
+    acceptAll: 'Alle akzeptieren',
+    rejectAll: 'Alle ablehnen',
+    close: 'Schließen',
+    more: 'Mehr in der Datenschutzerklärung',
+    services: {
+      maps: {
+        name: 'Google Maps (Karte)',
+        text: 'Zeigt die Karte auf der Seite „Standorte“. Dabei werden Daten wie deine IP-Adresse an Google übertragen, und Google kann Cookies setzen.',
+      },
+    },
+    embed: {
+      mapsTitle: 'Karte',
+      mapsText:
+        'Die Google-Karte erscheint erst, wenn du einwilligst. Dabei werden Daten wie deine IP-Adresse an Google übertragen, und Google kann Cookies setzen. Du kannst das jederzeit über „Cookie-Einstellungen“ im Fußbereich widerrufen.',
+      mapsButton: 'Einwilligen und Karte laden',
+      mapsFrame: 'Karte: Anthony Bánh Mì, Hoyerswerdaer Straße 26, Dresden',
+    },
+  },
   related: {
     title: 'Mehr entdecken',
   },
@@ -233,6 +259,7 @@ const en: Dict = {
     contact: 'Contact',
     imprint: 'Legal notice',
     privacy: 'Privacy',
+    cookies: 'Cookie settings',
   },
   home: {
     eyebrow: 'Vietnamese Sandwich House',
@@ -323,6 +350,31 @@ const en: Dict = {
   footer: {
     rights: 'All rights reserved.',
     external: 'opens an external site in a new tab',
+  },
+  consent: {
+    settingsTitle: 'Cookie settings',
+    settingsLead:
+      'Here you decide which optional services you allow. Without your consent, no data is sent to third parties. You can change or withdraw your choice at any time.',
+    necessaryTitle: 'Necessary',
+    necessaryText: 'Stores your choice in your browser (local storage, 6 months). No consent is needed for this.',
+    save: 'Save selection',
+    acceptAll: 'Accept all',
+    rejectAll: 'Reject all',
+    close: 'Close',
+    more: 'More in the privacy policy',
+    services: {
+      maps: {
+        name: 'Google Maps (map)',
+        text: 'Shows the map on the locations page. Data such as your IP address is sent to Google, and Google may set cookies.',
+      },
+    },
+    embed: {
+      mapsTitle: 'Map',
+      mapsText:
+        'The Google map appears only once you consent. Data such as your IP address is sent to Google, and Google may set cookies. You can withdraw this at any time via “Cookie settings” in the footer.',
+      mapsButton: 'Consent and load map',
+      mapsFrame: 'Map: Anthony Bánh Mì, Hoyerswerdaer Straße 26, Dresden',
+    },
   },
   related: {
     title: 'Discover more',

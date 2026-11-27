@@ -1,0 +1,95 @@
+---
+import { services } from '../data/services';
+import { mapsEmbedForLang } from '../lib/google';
+import { href, type Lang } from '../i18n/routes';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+const maps = services.maps;
+---
+
+{
+  maps && (
+    <section
+      class="map"
+      data-embed="maps"
+      data-src={mapsEmbedForLang(maps.embedUrl, lang)}
+      data-title={t.consent.embed.mapsFrame}
+      aria-labelledby="map-title"
+    >
+      <h3 id="map-title" class="label">{t.consent.embed.mapsTitle}</h3>
+      <div class="placeholder" data-embed-placeholder>
+        <p>{t.consent.embed.mapsText}</p>
+        <button type="button" class="btn" data-embed-consent="maps">{t.consent.embed.mapsButton}</button>
+        <p class="more"><a href={href('privacy', lang)}>{t.consent.more}</a></p>
+      </div>
+      <div class="live" data-embed-live hidden></div>
+    </section>
+  )
+}
+
+<style>
+  .map {
+    display: grid;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  h3.label {
+    font-family: var(--font-text);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    color: var(--color-accent-text);
+  }
+
+  .placeholder {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background: var(--color-surface-strong);
+    font-size: var(--fs-small);
+  }
+
+  /* Das hidden-Attribut muss gegen die display-Regeln gewinnen. */
+  [hidden] {
+    display: none;
+  }
+
+  .btn {
+    min-height: 2.75rem;
+    padding: 0.5rem 1.25rem;
+    border: 0;
+    background: var(--color-accent);
+    color: var(--green-950);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .more {
+    font-size: var(--fs-label);
+  }
+
+  .live :global(iframe) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 0;
+  }
+
+  @media (width >= 45rem) {
+    .live :global(iframe) {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
